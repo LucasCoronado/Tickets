@@ -93,3 +93,46 @@
 	"Usuario.h"
 	<cstring>
 
+1729190601 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\cliente.cpp
+	"Cliente.h"
+
+1729189897 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\cliente.h
+	<iostream>
+	"Usuario.h"
+
+1728694804 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\usuario.h
+	<iostream>
+
+1728694553 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\fecha.cpp
+	"Fecha.h"
+
+1728694554 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\fecha.h
+	<string>
+
+1729211184 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\main.cpp
+	<iostream>
+	"Usuario.h"
+	"Cliente.h"
+	"Ticket.h"
+
+1729210747 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\ticket.h
+	"Cliente.h"
+	"Responsable.h"
+	"Fecha.h"
+
+1729190006 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\responsable.h
+	<iostream>
+	"Usuario.h"
+
+1729190592 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\responsable.cpp
+	"Responsable.h"
+
+1729210876 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\ticket.cpp
+	"Ticket.h"
+	<iostream>
+	<cstring>
+
+1728605423 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\usuario.cpp
+	"Usuario.h"
+	<cstring>
+
