@@ -120,7 +120,7 @@
 	"Responsable.h"
 	"Fecha.h"
 
-1729190006 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\responsable.h
+1729629578 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\responsable.h
 	<iostream>
 	"Usuario.h"
 
@@ -135,4 +135,10 @@
 1728605423 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\usuario.cpp
 	"Usuario.h"
 	<cstring>
+
+1729568609 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\clientearchivo.cpp
+	"ClienteArchivo.h"
+
+1729568612 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\clientearchivo.h
+	"Cliente.h"
 
