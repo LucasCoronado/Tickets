@@ -5,15 +5,17 @@ using namespace std;
 
 Usuario::Usuario()
 {
+	_id = -1;
 	setNombre("Juan");
 	setApellido("Perez");
 	setUser("JuanP");
 	setPassw("12345678");
 }
 
-Usuario::Usuario(string nombre, string apellido, string user, string passw)
+Usuario::Usuario(string nombre, string apellido, string user, string passw, string fileName)
 {
 
+	setId(-1);
 	setNombre(nombre);
 	setApellido(apellido);
 	setUser(user);
@@ -26,6 +28,11 @@ Usuario::~Usuario()
 	//dtor
 }
 
+
+int Usuario::getId()
+{
+	return _id;
+}
 
 string Usuario::getNombre()
 {
@@ -44,8 +51,14 @@ string Usuario::getPassw()
 	return _passw;
 }
 
-string Usuario::getPermiso(){
-    return _permiso;
+string Usuario::getPermiso()
+{
+	return _permiso;
+}
+
+void Usuario::setId(int id)
+{
+  _id = id;
 }
 
 void Usuario::setNombre(string nombre)
@@ -72,7 +85,7 @@ void Usuario::setUser(string user)
 bool Usuario::setPassw(string passw)
 {
 
-	if(passw.size() < 30 && passw.size() > 8)
+	if(passw.size() < 30 && passw.size() > 4)
 	{
 		strcpy(_passw, passw.c_str());
 		return true;
@@ -80,10 +93,48 @@ bool Usuario::setPassw(string passw)
 	return false;
 }
 
-void Usuario::setPermiso(string permiso){
+void Usuario::setPermiso(string permiso)
+{
 
-    if(permiso.size() < 30)
+	if(permiso.size() < 30)
 	{
 		strcpy(_permiso, permiso.c_str());
 	}
+}
+
+void Usuario::cargarUsuario(string fileName)
+{
+	string nombre, apellido, user, passw;
+
+	cout << "Nombre: ";
+	getline(cin, nombre);
+	setNombre(nombre);
+
+	cout << "Apellido: ";
+	getline(cin, apellido);
+	setApellido(apellido);
+
+	cout << "Username: ";
+	cin >> user;
+	setUser(user);
+
+	cout << "Contrasena: ";
+	cin >> passw;
+	while(setPassw(passw)==false)
+	{
+		cout << "La contrasena debe tener un minimo de 5 caracteres"<<endl;
+		cout << "Contrasena: ";
+		cin >> passw;
+	};
+}
+
+void Usuario::mostrarUsuario()
+{
+
+	cout << "---------------------------" << endl;
+	cout << "Nombre: " << getNombre() << endl;
+	cout << "Apellido: " << getApellido() << endl;
+	cout << "User: " <<getUser() << endl;
+	cout << "Contrasena: " <<getPassw() << endl;
+	cout << "Id: " << getId() << endl;
 }

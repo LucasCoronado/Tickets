@@ -6,26 +6,31 @@ class Usuario
 {
 public:
 	Usuario();
-	Usuario(std::string nombre, std::string apellido, std::string user, std::string passw);
+	Usuario(std::string nombre, std::string apellido, std::string user, std::string passw, std::string fileName);
 
 	~Usuario();
 
+	int getId();
 	std::string getNombre();
 	std::string getApellido();
 	std::string getUser();
 	std::string getPassw();
 	std::string getPermiso();
 
+	void setId(int id);
 	void setNombre(std::string nombre);
 	void setApellido(std::string apellido);
 	void setUser(std::string user);
 	bool setPassw(std::string passw);
 	void setPermiso(std::string permiso);
 
-	bool autenticarLogin(std::string user, std::string passw, std::string permiso);
+	//bool autenticarLogin(std::string user, std::string passw, std::string permiso);
+	void cargarUsuario(std::string fileName);
+	void mostrarUsuario();
 
 protected:
 
+	int _id;
 	char _nombre[30];
 	char _apellido[30];
 	char _user[30];

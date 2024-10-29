@@ -11,9 +11,9 @@ class ClienteArchivo
         bool guardar(const Cliente &registro);
         int buscar(int codigo);
 
-        bool leerTodos(Cliente registros[], int cantidad);
+        void leerTodos();
+        int getCantidad();
 
     private:
         std::string _fileName;
-        int getCantidad();
 };

@@ -1,8 +1,10 @@
 #include "ClienteArchivo.h"
+#include <iostream>
+using namespace std;
 
 ClienteArchivo::ClienteArchivo()
 {
-	_fileName = "clientes.dat";
+   _fileName = "clientes.dat";
 }
 
 ClienteArchivo::~ClienteArchivo()
@@ -52,21 +54,23 @@ int ClienteArchivo::getCantidad()
 
 }
 
-bool ClienteArchivo::leerTodos(Cliente registros[], int cantidad)
+void ClienteArchivo::leerTodos()
 {
+	Cliente regC;
 	FILE *pFile;
-	bool result;
-
 	pFile = fopen(_fileName.c_str(), "rb");
 
 	if(pFile == nullptr)
 	{
-		return false;
+		cout<<"No se pudo abrir el archivo"<<endl;
+		return;
 	}
 
-	result = fread(registros, sizeof(Cliente), cantidad, pFile) == cantidad;
+	while(fread(&regC, sizeof(Cliente),1, pFile)==1){
+
+		regC.mostrarUsuario();
+		cout << endl;
+	}
 
 	fclose(pFile);
-
-	return result;
 }

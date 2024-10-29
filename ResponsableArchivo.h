@@ -11,7 +11,8 @@ public:
 	bool guardar(const Responsable &registro);
 	int buscar(int codigo);
 
-	bool leerTodos(Responsable registros[], int cantidad);
+	void leerTodos();
+	int setId(std::string fileName);
 
 private:
 	std::string _fileName;
