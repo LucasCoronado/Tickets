@@ -56,6 +56,11 @@ string Usuario::getPermiso()
 	return _permiso;
 }
 
+string Usuario::getFileName()
+{
+	return _fileName;
+}
+
 void Usuario::setId(int id)
 {
 	_id = id;
@@ -99,6 +104,15 @@ void Usuario::setPermiso(string permiso)
 	if(permiso.size() < 30)
 	{
 		strcpy(_permiso, permiso.c_str());
+	}
+}
+
+void Usuario::setFileName(string fileName)
+{
+
+	if(fileName.size() < 20)
+	{
+		strcpy(_fileName, fileName.c_str());
 	}
 }
 

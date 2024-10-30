@@ -13,8 +13,14 @@ UsuarioArchivo::~UsuarioArchivo()
 }
 
 
-bool UsuarioArchivo::guardar(const Usuario &registro, string fileName)
+bool UsuarioArchivo::guardar(const Usuario &registro)
 {
+
+
+	Usuario copiaRegistro = registro;
+    string fileName = copiaRegistro.getFileName();
+
+	copiaRegistro.setId(copiaRegistro.setIdMasUno(fileName.c_str()));
 
 	FILE *pFile;
 	bool result;
@@ -26,9 +32,6 @@ bool UsuarioArchivo::guardar(const Usuario &registro, string fileName)
 		return false;
 	}
 
-	Usuario copiaRegistro = registro;
-
-	copiaRegistro.setId(copiaRegistro.setIdMasUno(fileName.c_str()));
 
 	copiaRegistro.mostrarUsuario();
 	result = fwrite(&copiaRegistro, sizeof(Usuario), 1,pFile) == 1;

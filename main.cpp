@@ -1,10 +1,9 @@
 #include <iostream>
-#include "Usuario.h"
 #include "Cliente.h"
-//#include "ClienteArchivo.h"
 #include "Responsable.h"
-//#include "ResponsableArchivo.h"
 #include "UsuarioArchivo.h"
+#include "Ticket.h"
+#include "TicketArchivo.h"
 using namespace std;
 
 
@@ -12,10 +11,11 @@ void cargarCliente();
 void listarClientes();
 void cargarResponsable();
 void listarResponsables();
+void cargarTicket();
 
 int main()
 {
-	int usuario = 3;
+	/*int usuario = 3;
 	while(usuario != 0){
 	cout<<"CARGA DE USUARIO"<<endl<<endl;
 
@@ -35,7 +35,9 @@ int main()
 		cargarResponsable();
 		listarResponsables();
 	}
-	}
+	}  */
+
+   cargarTicket();
 
 	return 0;
 }
@@ -47,7 +49,7 @@ void cargarCliente()
 
 	c1.cargarCliente("clientes.dat");
 
-	if(cArch.guardar(c1,"clientes.dat"))
+	if(cArch.guardar(c1))
 	{
 		cout << "Registro de cliente existoso"<<endl;
 	}
@@ -75,7 +77,7 @@ void cargarResponsable()
 
 	r1.cargarResponsable("responsables.dat");
 
-	if(rArch.guardar(r1, "responsables.dat"))
+	if(rArch.guardar(r1))
 	{
 		cout << "Registro de Responsable existoso"<<endl;
 	}
@@ -95,3 +97,23 @@ void listarResponsables()
 
 	system("pause");
 }
+
+void cargarTicket(){
+
+	Ticket t1;
+	TicketArchivo tArch;
+
+	t1.cargarTicket();
+
+	if(tArch.guardar(t1))
+	{
+		cout << "Creacion de Ticket existoso"<<endl;
+	}
+	else
+	{
+		cout << "No se pudo crear el Ticket" << endl;
+	}
+
+
+}
+

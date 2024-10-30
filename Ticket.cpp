@@ -123,3 +123,48 @@ void Ticket::setFechaLimite(Fecha fechaLimite)
 {
 	_fechaLimite = fechaLimite;
 }
+
+int Ticket::setIdMasUno(string fileName)
+{
+
+	Ticket registro;
+	FILE *pFile;
+
+	pFile = fopen(fileName.c_str(),"rb");
+
+	if(pFile == nullptr)
+	{
+
+		return -1;
+	}
+
+	fseek(pFile,-sizeof(registro),SEEK_END);
+
+	fread(&registro,sizeof(registro),1,pFile);
+
+	int i = registro.getId() + 1;
+
+	return i;
+
+}
+
+void Ticket::cargarTicket(){
+
+	string titulo,descripcion,prioridad;
+
+	cout<<"TITULO: ";
+	getline(cin, titulo);
+	setTitulo(titulo);
+
+	cout<<"DESCRIPCION: ";
+	getline(cin, descripcion);
+	setDescripcion(descripcion);
+
+	cout<<"PRIORIDAD: ";
+	cin>>prioridad;
+	setPrioridad(prioridad);
+
+	setEstado("Pendiente");
+
+
+}

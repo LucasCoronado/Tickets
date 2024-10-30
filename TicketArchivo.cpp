@@ -12,7 +12,8 @@ TicketArchivo::~TicketArchivo()
 
 bool TicketArchivo::guardar(const Ticket &registro)
 {
-
+	Ticket copiaRegistro = registro;
+	copiaRegistro.setId(copiaRegistro.setIdMasUno(_fileName.c_str()));
 	FILE *pFile;
 	bool result;
 
@@ -23,7 +24,8 @@ bool TicketArchivo::guardar(const Ticket &registro)
 		return false;
 	}
 
-	result = fwrite(&registro, sizeof(Ticket), 1,pFile) == 1;
+	copiaRegistro.mostrarTicket();
+	result = fwrite(&copiaRegistro, sizeof(Ticket), 1,pFile) == 1;
 
 	fclose(pFile);
 

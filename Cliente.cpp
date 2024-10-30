@@ -7,6 +7,7 @@ Cliente::Cliente(string nombre, string apellido, string user, string passw, stri
 
 Cliente::Cliente():Usuario()
 {
+	setFileName("clientes.dat");
 }
 
 Cliente::~Cliente()
@@ -17,6 +18,7 @@ Cliente::~Cliente()
 
 void Cliente::cargarCliente(string fileName){
 
+	cout<<"REGISTRO DE CLIENTE"<<endl;
 	cargarUsuario(fileName);
 	setPermiso("Cliente");
 

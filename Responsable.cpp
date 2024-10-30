@@ -8,6 +8,7 @@ Responsable::Responsable(string nombre, string apellido, string user, string pas
 
 Responsable::Responsable():Usuario()
 {
+	setFileName("responsables.dat");
 }
 
 Responsable::~Responsable()
@@ -17,30 +18,8 @@ Responsable::~Responsable()
 
 void Responsable::cargarResponsable(string fileName){
 
+	cout<<"REGISTRO DE RESPONSABLE"<<endl;
 	cargarUsuario(fileName);
 	setPermiso("Responsable");
 
 }
-
-/*int Responsable::setIdMasUno(string fileName){
-
-	Responsable registro;
-	FILE *pFile;
-
-	pFile = fopen(fileName.c_str(),"rb");
-
-	if(pFile == nullptr){
-
-		return -1;
-	}
-
-	fseek(pFile,-sizeof(Responsable),SEEK_END);
-
-	fread(&registro,sizeof(Responsable),1,pFile);
-
-	int i = registro.getId() + 1;
-
-	return i;
-
-}
-*/

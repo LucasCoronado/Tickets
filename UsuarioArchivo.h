@@ -7,7 +7,7 @@ class UsuarioArchivo
         UsuarioArchivo();
         virtual ~UsuarioArchivo();
 
-        bool guardar(const Usuario &registro, std::string fileName);
+        bool guardar(const Usuario &registro);
         void leerTodos(std::string fileName);
         int getCantidad(std::string fileName);
 

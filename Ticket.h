@@ -30,8 +30,11 @@ public:
 	void setResponsable(Responsable responsable);
 	void setFechaCreacion(Fecha fechaCreacion);
 	void setFechaLimite(Fecha fechaLimite);
+	int setIdMasUno(std::string fileName);
 
 	void mostrarTicket();
+
+	void cargarTicket();
 
 private:
 

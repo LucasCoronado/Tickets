@@ -36,20 +36,18 @@
 		</Compiler>
 		<Unit filename="Cliente.cpp" />
 		<Unit filename="Cliente.h" />
-		<Unit filename="ClienteArchivo.cpp" />
-		<Unit filename="ClienteArchivo.h" />
 		<Unit filename="Fecha.cpp" />
 		<Unit filename="Fecha.h" />
 		<Unit filename="Responsable.cpp" />
 		<Unit filename="Responsable.h" />
-		<Unit filename="ResponsableArchivo.cpp" />
-		<Unit filename="ResponsableArchivo.h" />
 		<Unit filename="Ticket.cpp" />
 		<Unit filename="Ticket.h" />
 		<Unit filename="TicketArchivo.cpp" />
 		<Unit filename="TicketArchivo.h" />
 		<Unit filename="Usuario.cpp" />
 		<Unit filename="Usuario.h" />
+		<Unit filename="UsuarioArchivo.cpp" />
+		<Unit filename="UsuarioArchivo.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
