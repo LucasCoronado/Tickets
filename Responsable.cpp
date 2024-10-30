@@ -22,7 +22,7 @@ void Responsable::cargarResponsable(string fileName){
 
 }
 
-int Responsable::setIdMasUno(string fileName){
+/*int Responsable::setIdMasUno(string fileName){
 
 	Responsable registro;
 	FILE *pFile;
@@ -43,3 +43,4 @@ int Responsable::setIdMasUno(string fileName){
 	return i;
 
 }
+*/

@@ -11,7 +11,7 @@ public:
 	~Responsable();
 
 	void cargarResponsable(std::string fileName);
-	int setIdMasUno(std::string fileName);
+	//int setIdMasUno(std::string fileName);
 private:
 
     };

@@ -28,6 +28,8 @@ public:
 	void cargarUsuario(std::string fileName);
 	void mostrarUsuario();
 
+	int setIdMasUno(std::string fileName);
+
 protected:
 
 	int _id;

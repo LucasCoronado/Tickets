@@ -12,8 +12,9 @@ class ClienteArchivo
         int buscar(int codigo);
 
         void leerTodos();
-        int getCantidad();
+        //int setId(std::string fileName);
 
     private:
+        int getCantidad();
         std::string _fileName;
 };

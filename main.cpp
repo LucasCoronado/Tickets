@@ -1,9 +1,10 @@
 #include <iostream>
 #include "Usuario.h"
 #include "Cliente.h"
-#include "ClienteArchivo.h"
+//#include "ClienteArchivo.h"
 #include "Responsable.h"
-#include "ResponsableArchivo.h"
+//#include "ResponsableArchivo.h"
+#include "UsuarioArchivo.h"
 using namespace std;
 
 
@@ -14,23 +15,39 @@ void listarResponsables();
 
 int main()
 {
-    //cargarCliente();
+	int usuario = 3;
+	while(usuario != 0){
+	cout<<"CARGA DE USUARIO"<<endl<<endl;
 
-    //listarClientes();
+	cout<<"1 - Cliente"<<endl;
+	cout<<"2 - Responsable"<<endl;
 
-	cargarResponsable();
-	listarResponsables();
+	cin>>usuario;
+	cin.ignore();
+
+	switch(usuario)
+	{
+	case 1:
+		cargarCliente();
+		listarClientes();
+		break;
+	case 2:
+		cargarResponsable();
+		listarResponsables();
+	}
+	}
+
 	return 0;
 }
 
 void cargarCliente()
 {
 	Cliente c1;
-	ClienteArchivo cArch;
+	UsuarioArchivo cArch;
 
 	c1.cargarCliente("clientes.dat");
 
-	if(cArch.guardar(c1))
+	if(cArch.guardar(c1,"clientes.dat"))
 	{
 		cout << "Registro de cliente existoso"<<endl;
 	}
@@ -42,22 +59,23 @@ void cargarCliente()
 	system("pause");
 }
 
-void listarClientes(){
+void listarClientes()
+{
 
-    ClienteArchivo cArch;
-    cArch.leerTodos();
+	UsuarioArchivo cArch;
+	cArch.leerTodos("clientes.dat");
 
-    system("pause");
+	system("pause");
 }
 
 void cargarResponsable()
 {
 	Responsable r1;
-	ResponsableArchivo rArch;
+	UsuarioArchivo rArch;
 
 	r1.cargarResponsable("responsables.dat");
 
-	if(rArch.guardar(r1))
+	if(rArch.guardar(r1, "responsables.dat"))
 	{
 		cout << "Registro de Responsable existoso"<<endl;
 	}
@@ -69,10 +87,11 @@ void cargarResponsable()
 	system("pause");
 }
 
-void listarResponsables(){
+void listarResponsables()
+{
 
-    ResponsableArchivo cArch;
-    cArch.leerTodos();
+	UsuarioArchivo cArch;
+	cArch.leerTodos("responsables.dat");
 
-    system("pause");
+	system("pause");
 }

@@ -25,7 +25,12 @@ bool ClienteArchivo::guardar(const Cliente &registro)
 		return false;
 	}
 
-	result = fwrite(&registro, sizeof(Cliente), 1,pFile) == 1;
+	Cliente copiaRegistro = registro;
+
+	copiaRegistro.setId(copiaRegistro.setIdMasUno(_fileName.c_str()));
+
+	copiaRegistro.mostrarUsuario();
+	result = fwrite(&copiaRegistro, sizeof(Cliente ), 1,pFile) == 1;
 
 	fclose(pFile);
 

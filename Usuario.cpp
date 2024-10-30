@@ -58,7 +58,7 @@ string Usuario::getPermiso()
 
 void Usuario::setId(int id)
 {
-  _id = id;
+	_id = id;
 }
 
 void Usuario::setNombre(string nombre)
@@ -137,4 +137,28 @@ void Usuario::mostrarUsuario()
 	cout << "User: " <<getUser() << endl;
 	cout << "Contrasena: " <<getPassw() << endl;
 	cout << "Id: " << getId() << endl;
+}
+
+int Usuario::setIdMasUno(string fileName)
+{
+
+	Usuario registro;
+	FILE *pFile;
+
+	pFile = fopen(fileName.c_str(),"rb");
+
+	if(pFile == nullptr)
+	{
+
+		return -1;
+	}
+
+	fseek(pFile,-sizeof(registro),SEEK_END);
+
+	fread(&registro,sizeof(registro),1,pFile);
+
+	int i = registro.getId() + 1;
+
+	return i;
+
 }

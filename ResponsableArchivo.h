@@ -12,7 +12,7 @@ public:
 	int buscar(int codigo);
 
 	void leerTodos();
-	int setId(std::string fileName);
+	//int setId(std::string fileName);
 
 private:
 	std::string _fileName;
