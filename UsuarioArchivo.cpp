@@ -83,3 +83,53 @@ int UsuarioArchivo::getCantidad(string fileName)
 	return total / sizeof(Usuario);
 
 }
+
+
+bool UsuarioArchivo::validarUser(string user, Usuario &registro){
+
+	string fileName = registro.getFileName();
+	FILE *pFile;
+
+	pFile = fopen(fileName.c_str(),"rb");
+
+	if(pFile == nullptr){
+
+		return false;
+	}
+
+	while(fread(&registro,sizeof(Usuario),1,pFile)==1){
+		if(registro.getUser() == user){
+			fclose(pFile);
+			return true;
+		}
+	}
+
+	fclose(pFile);
+	return false;
+
+}
+
+bool UsuarioArchivo::validarPass(string passw, Usuario &registro){
+
+	string fileName = registro.getFileName();
+	FILE *pFile;
+
+	pFile = fopen(fileName.c_str(),"rb");
+
+	if(pFile == nullptr){
+
+		return false;
+	}
+
+	while(fread(&registro,sizeof(Usuario),1,pFile)==1){
+		if(registro.getPassw() == passw){
+			fclose(pFile);
+			return true;
+		}
+	}
+
+	fclose(pFile);
+	return false;
+
+}
+

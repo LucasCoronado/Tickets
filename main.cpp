@@ -12,6 +12,9 @@ void listarClientes();
 void cargarResponsable();
 void listarResponsables();
 void cargarTicket();
+void listarTickets();
+
+bool logIn(Usuario usuario);
 
 int main()
 {
@@ -30,15 +33,22 @@ int main()
 	case 1:
 		cargarCliente();
 		listarClientes();
-		break;
+	break;
 	case 2:
-		cargarResponsable();
-		listarResponsables();
+	cargarResponsable();
+	*/listarResponsables();/*
 	}
 	}  */
 
-   cargarTicket();
+	//cargarTicket();
+	//listarTickets();
 
+
+	//cout<<"CLIENTE: "<<sizeof(Cliente)<<endl;
+	//cout<<"RESPONSABLE: "<<sizeof(Responsable)<<endl;
+
+	Responsable c;
+	logIn(c);
 	return 0;
 }
 
@@ -98,7 +108,8 @@ void listarResponsables()
 	system("pause");
 }
 
-void cargarTicket(){
+void cargarTicket()
+{
 
 	Ticket t1;
 	TicketArchivo tArch;
@@ -117,3 +128,43 @@ void cargarTicket(){
 
 }
 
+void listarTickets()
+{
+
+	TicketArchivo tArch;
+	tArch.leerTodos();
+
+	system("pause");
+}
+
+bool logIn(Usuario usuario)
+{
+	UsuarioArchivo uArch;
+	string user, passw;
+	bool userCheck{},passwCheck{};
+	while(!userCheck || !passwCheck)
+	{
+	system("cls");
+		cout<<"INGRESAR NOMBRE DE USUARIO: ";
+		cin>> user;
+
+		userCheck = uArch.validarUser(user,usuario);
+		if(!userCheck)
+		{
+			cout<<"EL USUARIO NO EXISTE"<<endl;
+			system("pause");
+		}else{
+		cout<<"INGRESAR CONTRASENA: ";
+		cin>> passw;
+
+		passwCheck = uArch.validarPass(passw,usuario);
+
+		if(!passwCheck)
+		{
+			cout<<"LA CONTRASENA ES INCORRECTA"<<endl<<endl;
+		} }
+
+	}
+	system("cls");
+	return true;
+}
