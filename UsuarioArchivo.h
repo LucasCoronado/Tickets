@@ -4,17 +4,23 @@
 class UsuarioArchivo
 {
     public:
+        UsuarioArchivo(std::string fileName);
         UsuarioArchivo();
         virtual ~UsuarioArchivo();
 
+        int getCantidad();
         bool guardar(const Usuario &registro);
-        void leerTodos(std::string fileName);
-        int getCantidad(std::string fileName);
+        Usuario leer(int id);
+        int buscar(int id);
+
         bool validarUser(std::string user, Usuario &registro);
         bool validarPass(std::string passw, Usuario &registro);
 
 
+
     private:
+
+        std::string _fileName;
 };
 
 

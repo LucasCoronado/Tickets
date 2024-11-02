@@ -26,13 +26,9 @@ public:
 	void setPermiso(std::string permiso);
 	void setFileName(std::string fileName);
 
-	//bool autenticarLogin(std::string user, std::string passw, std::string permiso);
-	void cargarUsuario(std::string fileName);
-	void mostrarUsuario();
+	Usuario getUsuario(Usuario registro,std::string user);
 
-	int setIdMasUno(std::string fileName);
-
-protected:
+private:
 
 	int _id;
 	char _nombre[30];
@@ -42,7 +38,5 @@ protected:
 
 	char _permiso[30];  // Puede ser "Cliente","Responsable","Admin"
 	char _fileName[20];
-
-private:
 };
 

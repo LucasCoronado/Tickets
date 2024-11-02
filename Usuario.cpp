@@ -116,63 +116,28 @@ void Usuario::setFileName(string fileName)
 	}
 }
 
-void Usuario::cargarUsuario(string fileName)
-{
-	string nombre, apellido, user, passw;
 
-	cout << "Nombre: ";
-	getline(cin, nombre);
-	setNombre(nombre);
+Usuario Usuario::getUsuario(Usuario registro,string user){
 
-	cout << "Apellido: ";
-	getline(cin, apellido);
-	setApellido(apellido);
+	string fileName = registro.getFileName();
 
-	cout << "Username: ";
-	cin >> user;
-	setUser(user);
-
-	cout << "Contrasena: ";
-	cin >> passw;
-	while(setPassw(passw)==false)
-	{
-		cout << "La contrasena debe tener un minimo de 5 caracteres"<<endl;
-		cout << "Contrasena: ";
-		cin >> passw;
-	};
-}
-
-void Usuario::mostrarUsuario()
-{
-
-	cout << "---------------------------" << endl;
-	cout << "Nombre: " << getNombre() << endl;
-	cout << "Apellido: " << getApellido() << endl;
-	cout << "User: " <<getUser() << endl;
-	cout << "Contrasena: " <<getPassw() << endl;
-	cout << "Id: " << getId() << endl;
-}
-
-int Usuario::setIdMasUno(string fileName)
-{
-
-	Usuario registro;
 	FILE *pFile;
 
 	pFile = fopen(fileName.c_str(),"rb");
 
-	if(pFile == nullptr)
-	{
+	if(pFile == nullptr){
 
-		return -1;
+		return registro;
 	}
 
-	fseek(pFile,-sizeof(registro),SEEK_END);
+	while(fread(&registro,sizeof(Usuario),1,pFile)==1){
+		if(registro.getUser() == user){
+			fclose(pFile);
+			return registro;
+		}
+	}
 
-	fread(&registro,sizeof(registro),1,pFile);
-
-	int i = registro.getId() + 1;
-
-	return i;
+	fclose(pFile);
+	exit(-1);
 
 }

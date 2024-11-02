@@ -2,73 +2,27 @@
 #include <iostream>
 using namespace std;
 
+UsuarioArchivo::UsuarioArchivo(string fileName)
+{
+	_fileName = fileName;
+}
+
 UsuarioArchivo::UsuarioArchivo()
 {
-    //ctor
+
 }
 
 UsuarioArchivo::~UsuarioArchivo()
 {
-    //dtor
+	//dtor
 }
 
-
-bool UsuarioArchivo::guardar(const Usuario &registro)
-{
-
-
-	Usuario copiaRegistro = registro;
-    string fileName = copiaRegistro.getFileName();
-
-	copiaRegistro.setId(copiaRegistro.setIdMasUno(fileName.c_str()));
-
-	FILE *pFile;
-	bool result;
-
-	pFile = fopen(fileName.c_str(),"ab");
-
-	if(pFile == nullptr)
-	{
-		return false;
-	}
-
-
-	copiaRegistro.mostrarUsuario();
-	result = fwrite(&copiaRegistro, sizeof(Usuario), 1,pFile) == 1;
-
-	fclose(pFile);
-
-	return result;
-
-}
-
-void UsuarioArchivo::leerTodos(string fileName)
-{
-	Usuario reg;
-	FILE *pFile;
-	pFile = fopen(fileName.c_str(), "rb");
-
-	if(pFile == nullptr)
-	{
-		cout<<"No se pudo abrir el archivo"<<endl;
-		return;
-	}
-
-	while(fread(&reg, sizeof(reg),1, pFile)==1){
-
-		reg.mostrarUsuario();
-		cout << endl;
-	}
-
-	fclose(pFile);
-}
-
-int UsuarioArchivo::getCantidad(string fileName)
+int UsuarioArchivo::getCantidad()
 {
 
 	int total;
 	FILE *pFile;
-	pFile = fopen(fileName.c_str(), "rb");
+	pFile = fopen(_fileName.c_str(), "rb");
 
 	if(pFile == nullptr)
 	{
@@ -81,24 +35,82 @@ int UsuarioArchivo::getCantidad(string fileName)
 	fclose(pFile);
 
 	return total / sizeof(Usuario);
-
 }
 
 
-bool UsuarioArchivo::validarUser(string user, Usuario &registro){
+bool UsuarioArchivo::guardar(const Usuario &registro)
+{
 
-	string fileName = registro.getFileName();
+
+	FILE *pFile;
+	bool result;
+
+	pFile = fopen(_fileName.c_str(),"ab");
+
+	if(pFile == nullptr)
+	{
+		return false;
+	}
+
+
+	result = fwrite(&registro, sizeof(Usuario), 1,pFile) == 1;
+
+	fclose(pFile);
+
+	return result;
+
+}
+Usuario UsuarioArchivo::leer(int id)
+{
+
+	Usuario usuario;
+	FILE *pFile = fopen(_fileName.c_str(), "rb");
+	if (pFile == NULL)
+	{
+		return usuario;
+	}
+
+	fseek(pFile, id * sizeof(Usuario), SEEK_SET);
+	fread(&usuario, sizeof(Usuario), 1, pFile);
+	fclose(pFile);
+	return usuario;
+
+}
+
+int UsuarioArchivo::buscar(int id)
+{
+	int i, cantidadRegistros = getCantidad();
+	Usuario usuario;
+
+	for(i=0; i<cantidadRegistros; i++)
+	{
+		usuario = leer(i);
+		if (usuario.getId() == id)
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+
+
+bool UsuarioArchivo::validarUser(string user, Usuario &registro)
+{
+
 	FILE *pFile;
 
-	pFile = fopen(fileName.c_str(),"rb");
+	pFile = fopen(_fileName.c_str(),"rb");
 
-	if(pFile == nullptr){
+	if(pFile == nullptr)
+	{
 
 		return false;
 	}
 
-	while(fread(&registro,sizeof(Usuario),1,pFile)==1){
-		if(registro.getUser() == user){
+	while(fread(&registro,sizeof(Usuario),1,pFile)==1)
+	{
+		if(registro.getUser() == user)
+		{
 			fclose(pFile);
 			return true;
 		}
@@ -109,20 +121,22 @@ bool UsuarioArchivo::validarUser(string user, Usuario &registro){
 
 }
 
-bool UsuarioArchivo::validarPass(string passw, Usuario &registro){
-
-	string fileName = registro.getFileName();
+bool UsuarioArchivo::validarPass(string passw, Usuario &registro)
+{
 	FILE *pFile;
 
-	pFile = fopen(fileName.c_str(),"rb");
+	pFile = fopen(_fileName.c_str(),"rb");
 
-	if(pFile == nullptr){
+	if(pFile == nullptr)
+	{
 
 		return false;
 	}
 
-	while(fread(&registro,sizeof(Usuario),1,pFile)==1){
-		if(registro.getPassw() == passw){
+	while(fread(&registro,sizeof(Usuario),1,pFile)==1)
+	{
+		if(registro.getPassw() == passw)
+		{
 			fclose(pFile);
 			return true;
 		}
