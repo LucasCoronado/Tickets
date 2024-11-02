@@ -17,6 +17,7 @@ public:
 	int getAnio();
 	void agregarDias(int num);
 	std::string toString();
+	bool verificarFecha(int dia, int mes, int anio);
 
 private:
 
@@ -25,7 +26,6 @@ private:
 	int _anio;
 	int vDias[12]= {31,28,31,30,31,30,31,31,30,31,30,31};
 
-	bool verificarFecha(int dia, int mes, int anio);
 	void setFechaDefault();
 	void agregarDia(int &dia);
 	void restarDia(int &dia);

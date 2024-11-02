@@ -1,8 +1,6 @@
 #pragma once
-#include "Cliente.h"
-#include "Responsable.h"
+#include "Usuario.h"
 #include "Fecha.h"
-
 
 
 class Ticket
@@ -16,25 +14,20 @@ public:
 	std::string getDescripcion();
 	std::string getPrioridad();
 	std::string getEstado();
-	Cliente getCliente();
-	Responsable getResponsable();
+	int getCliente();
+	int getResponsable();
 	Fecha getFechaCreacion();
 	Fecha getFechaLimite();
 
 	void setId(int id);
 	void setTitulo(std::string titulo);
 	void setDescripcion(std::string descripcion);
-	void setPrioridad(std::string prioridad);
+	bool setPrioridad(int prioridad);
 	void setEstado(std::string estado);
-	void setCliente(Cliente cliente);
-	void setResponsable(Responsable responsable);
+	void setCliente(int idCliente);
+	void setResponsable(int idResponsable);
 	void setFechaCreacion(Fecha fechaCreacion);
 	void setFechaLimite(Fecha fechaLimite);
-	int setIdMasUno(std::string fileName);
-
-	void mostrarTicket();
-
-	void cargarTicket();
 
 private:
 
@@ -43,8 +36,8 @@ private:
 	char _descripcion[100];
 	char _prioridad[10];  // Puede ser "Alta", "Media", "Baja"
 	char _estado[15];     // Puede ser "Pendiente", "En Progreso","Resuelto", "Cerrado"
-	Cliente _cliente;
-	Responsable _responsable;
+	int _idCliente;
+	int _idResponsable;
 	Fecha _fechaCreacion;
 	Fecha _fechaLimite;
 };

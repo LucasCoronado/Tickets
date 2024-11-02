@@ -1,4 +1,6 @@
 #include "TicketArchivo.h"
+#include <iostream>
+using namespace std;
 
 TicketArchivo::TicketArchivo()
 {
@@ -12,8 +14,6 @@ TicketArchivo::~TicketArchivo()
 
 bool TicketArchivo::guardar(const Ticket &registro)
 {
-	Ticket copiaRegistro = registro;
-	copiaRegistro.setId(copiaRegistro.setIdMasUno(_fileName.c_str()));
 	FILE *pFile;
 	bool result;
 
@@ -24,8 +24,7 @@ bool TicketArchivo::guardar(const Ticket &registro)
 		return false;
 	}
 
-	copiaRegistro.mostrarTicket();
-	result = fwrite(&copiaRegistro, sizeof(Ticket), 1,pFile) == 1;
+	result = fwrite(&registro, sizeof(Ticket), 1,pFile) == 1;
 
 	fclose(pFile);
 
@@ -54,38 +53,36 @@ int TicketArchivo::getCantidad()
 
 }
 
-bool TicketArchivo::leerTodos(Ticket registros[], int cantidad)
+Ticket TicketArchivo::leer(int pos)
 {
-	FILE *pFile;
-	bool result;
+	Ticket ticket;
 
-	pFile = fopen(_fileName.c_str(), "rb");
+	FILE *pFile = fopen(_fileName.c_str(), "rb");
 
-	if(pFile == nullptr)
+	if(pFile == NULL)
 	{
-		return false;
+		return ticket;
 	}
+	fseek(pFile,pos * sizeof(Ticket), SEEK_SET);
 
-	result = fread(registros, sizeof(Ticket), cantidad, pFile) == cantidad;
-
+	fread(&ticket, sizeof(Ticket), 1, pFile);
 	fclose(pFile);
-
-	return result;
-}
-
-Ticket TicketArchivo::leer(int pos){
-
-     FILE *pFile = fopen(_fileName.c_str(), "rb");
-
-    if(pFile == NULL){
-        return Ticket();
-    }
-    Ticket ticket;
-    fseek(pFile, sizeof(Ticket) * pos, SEEK_SET);
-
-    fread(&ticket, sizeof(Ticket), 1, pFile);
-    fclose(pFile);
-    return ticket;
+	return ticket;
 
 }
 
+int TicketArchivo::buscar(int id)
+{
+	int i, cantidadRegistros = getCantidad();
+	Ticket ticket;
+
+	for(i=0; i<cantidadRegistros; i++)
+	{
+		ticket = leer(i);
+		if (ticket.getId() == id)
+		{
+			return i;
+		}
+	}
+	return -1;
+}

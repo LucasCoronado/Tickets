@@ -3,18 +3,17 @@
 
 class TicketArchivo
 {
-    public:
-        TicketArchivo();
-        virtual ~TicketArchivo();
+public:
+	TicketArchivo();
+	virtual ~TicketArchivo();
 
-         bool guardar(const Ticket &registro);
-        int buscar(int codigo);
+	int getCantidad();
+	bool guardar(const Ticket &registro);
+	Ticket leer(int pos);
 
-        bool leerTodos(Ticket registros[], int cantidad);
-        Ticket leer(int pos);
+	int buscar(int id);
 
-    private:
-        std::string _fileName;
-        int getCantidad();
+	private:
+	std::string _fileName;
 };
 

@@ -58,7 +58,7 @@ int Fecha::getAnio()
 bool Fecha::verificarFecha(int dia, int mes, int anio)
 {
 
-	if(vDias[mes-1]>=dia && anio > 0)
+	if(vDias[mes-1]>=dia && mes <= 12 && mes >= 1 && anio > 0)
 	{
 		return true;
 	}

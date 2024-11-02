@@ -8,10 +8,10 @@ Ticket::Ticket()
 	setId(-1);
 	setTitulo("Titulo generico");
 	setDescripcion("Descripcion generica");
-	setPrioridad("Alta");
+	setPrioridad(1);
 	setEstado("Pendiente");
-	setCliente(_cliente);
-	setResponsable(_responsable);
+	//setCliente(_cliente);
+	//setResponsable(_responsable);
 	setFechaCreacion(_fechaCreacion);
 	setFechaLimite(_fechaLimite);
 }
@@ -19,20 +19,6 @@ Ticket::Ticket()
 Ticket::~Ticket()
 {
 	//dtor
-}
-
-void Ticket::mostrarTicket(){
-
-    cout<<"TICKET #"<<getId()<<endl<<endl;
-
-    cout<<"Titulo: "<<getTitulo()<<endl;
-    cout<<"Descripcion: "<<getDescripcion()<<endl;
-    cout<<"Prioridad: "<<getPrioridad()<<endl;
-    cout<<"Estado: "<<getEstado()<<endl;
-    cout<<"Cliente: "<<getCliente().getUser()<<endl;
-    cout<<"Responsable Asignado: "<<getResponsable().getUser()<<endl;
-    cout<<"Fecha de Creacion: "<<getFechaCreacion().toString()<<endl;
-    cout<<"Fecha Limite: "<<getFechaLimite().toString()<<endl;
 }
 
 int Ticket::getId()
@@ -55,13 +41,13 @@ string Ticket::getEstado()
 {
 	return _estado;
 }
-Cliente Ticket::getCliente()
+int Ticket::getCliente()
 {
-	return _cliente;
+	return _idCliente;
 }
-Responsable Ticket::getResponsable()
+int Ticket::getResponsable()
 {
-	return _responsable;
+	return _idResponsable;
 }
 
 Fecha Ticket::getFechaCreacion()
@@ -93,12 +79,32 @@ void Ticket::setDescripcion(string descripcion)
 		strcpy(_descripcion, descripcion.c_str());
 	}
 }
-void Ticket::setPrioridad(string prioridad)
+bool Ticket::setPrioridad(int prioridad)
 {
-	if(prioridad.size() < 30)
+	switch(prioridad)
 	{
-		strcpy(_prioridad, prioridad.c_str());
+
+	case 1:
+	{
+		strcpy(_prioridad, "ALTA");
+		break;
 	}
+	case 2:
+	{
+		strcpy(_prioridad, "MEDIA");
+		break;
+	}
+	case 3:
+	{
+		strcpy(_prioridad, "BAJA");
+		break;
+	}
+	default:{
+		return false;
+	}
+	}
+	return true;
+
 }
 void Ticket::setEstado(string estado)
 {
@@ -107,14 +113,15 @@ void Ticket::setEstado(string estado)
 		strcpy(_estado, estado.c_str());
 	}
 }
-void Ticket::setCliente(Cliente cliente)
+void Ticket::setCliente(int idCliente)
 {
-	_cliente = cliente;
+	_idCliente = idCliente;
 }
-void Ticket::setResponsable(Responsable responsable)
+void Ticket::setResponsable(int idResponsable)
 {
-	_responsable = responsable;
+	_idResponsable = idResponsable;
 }
+
 void Ticket::setFechaCreacion(Fecha fechaCreacion)
 {
 	_fechaCreacion = fechaCreacion;
@@ -124,7 +131,7 @@ void Ticket::setFechaLimite(Fecha fechaLimite)
 	_fechaLimite = fechaLimite;
 }
 
-int Ticket::setIdMasUno(string fileName)
+/*int Ticket::setIdMasUno(string fileName)
 {
 
 	Ticket registro;
@@ -146,25 +153,5 @@ int Ticket::setIdMasUno(string fileName)
 
 	return i;
 
-}
+}  */
 
-void Ticket::cargarTicket(){
-
-	string titulo,descripcion,prioridad;
-
-	cout<<"TITULO: ";
-	getline(cin, titulo);
-	setTitulo(titulo);
-
-	cout<<"DESCRIPCION: ";
-	getline(cin, descripcion);
-	setDescripcion(descripcion);
-
-	cout<<"PRIORIDAD: ";
-	cin>>prioridad;
-	setPrioridad(prioridad);
-
-	setEstado("Pendiente");
-
-
-}
