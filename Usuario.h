@@ -26,7 +26,7 @@ public:
 	void setPermiso(std::string permiso);
 	void setFileName(std::string fileName);
 
-	Usuario getUsuario(Usuario registro,std::string user);
+	Usuario getUsuario(std::string fileName,std::string user);
 
 private:
 

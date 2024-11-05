@@ -116,11 +116,9 @@ void Usuario::setFileName(string fileName)
 	}
 }
 
+Usuario Usuario::getUsuario(string fileName,string user){
 
-Usuario Usuario::getUsuario(Usuario registro,string user){
-
-	string fileName = registro.getFileName();
-
+	Usuario registro;
 	FILE *pFile;
 
 	pFile = fopen(fileName.c_str(),"rb");
@@ -141,3 +139,4 @@ Usuario Usuario::getUsuario(Usuario registro,string user){
 	exit(-1);
 
 }
+

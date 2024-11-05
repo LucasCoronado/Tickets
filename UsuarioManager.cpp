@@ -28,9 +28,10 @@ void UsuarioManager::cargarUsuario(string fileName)
 	cout << "Username: ";
 	cin >> user;
 
-	while(uArchivo.validarUser(user,_usuario)==false){
-
+	while(uArchivo.validarUser(user,fileName))
+	{
 		cout<<"El nombre de usuario ya existe"<<endl;
+		cout << "Username: ";
 		cin >> user;
 	}
 	_usuario.setUser(user);
@@ -70,7 +71,7 @@ void UsuarioManager::mostrarUsuario(Usuario usuario)
 	cout << "Tipo de Usuario: " << usuario.getPermiso() <<endl;
 }
 
-void UsuarioManager::ListarTodos(string fileName)
+void UsuarioManager::leerTodos(string fileName)
 {
 	UsuarioArchivo uArchivo(fileName);
 
@@ -84,7 +85,7 @@ void UsuarioManager::ListarTodos(string fileName)
 	}
 }
 
-void UsuarioManager::ListarXId(string fileName)
+void UsuarioManager::leerPorId(string fileName)
 {
 	UsuarioArchivo uArchivo(fileName);
 	int id;

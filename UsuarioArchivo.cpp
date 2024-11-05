@@ -1,5 +1,6 @@
 #include "UsuarioArchivo.h"
 #include <iostream>
+#include <time.h>
 using namespace std;
 
 UsuarioArchivo::UsuarioArchivo(string fileName)
@@ -40,8 +41,6 @@ int UsuarioArchivo::getCantidad()
 
 bool UsuarioArchivo::guardar(const Usuario &registro)
 {
-
-
 	FILE *pFile;
 	bool result;
 
@@ -51,7 +50,6 @@ bool UsuarioArchivo::guardar(const Usuario &registro)
 	{
 		return false;
 	}
-
 
 	result = fwrite(&registro, sizeof(Usuario), 1,pFile) == 1;
 
@@ -94,16 +92,16 @@ int UsuarioArchivo::buscar(int id)
 }
 
 
-bool UsuarioArchivo::validarUser(string user, Usuario &registro)
+bool UsuarioArchivo::validarUser(string user, string fileName)
 {
+	Usuario registro;
 
 	FILE *pFile;
 
-	pFile = fopen(_fileName.c_str(),"rb");
+	pFile = fopen(fileName.c_str(),"rb");
 
 	if(pFile == nullptr)
 	{
-
 		return false;
 	}
 
@@ -121,11 +119,12 @@ bool UsuarioArchivo::validarUser(string user, Usuario &registro)
 
 }
 
-bool UsuarioArchivo::validarPass(string passw, Usuario &registro)
+bool UsuarioArchivo::validarPass(string passw, string fileName)
 {
+	Usuario registro;
 	FILE *pFile;
 
-	pFile = fopen(_fileName.c_str(),"rb");
+	pFile = fopen(fileName.c_str(),"rb");
 
 	if(pFile == nullptr)
 	{
@@ -147,3 +146,15 @@ bool UsuarioArchivo::validarPass(string passw, Usuario &registro)
 
 }
 
+int UsuarioArchivo::asignarResponsable()
+{
+
+	int cant = getCantidad();
+
+	srand(time(0));
+
+	int i = rand()%cant +1;
+
+
+	return i;
+}

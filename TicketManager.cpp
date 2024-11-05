@@ -19,6 +19,7 @@ void TicketManager::cargarTicket(Usuario usuario)
 	string titulo,descripcion;
 	int prioridad,dia,mes,anio,limite;
 
+	cin.ignore();
 	cout<<"TITULO: ";
 	getline(cin, titulo);
 	_ticket.setTitulo(titulo);
@@ -79,6 +80,9 @@ void TicketManager::cargarTicket(Usuario usuario)
 	_ticket.setId(generarNuevoId());
 	_ticket.setCliente(usuario.getId());
 
+	//UsuarioArchivo usAr;
+	//_ticket.setResponsable(usAr.asignarResponsable());
+
 	_ticketArch.guardar(_ticket);
 
 
@@ -94,7 +98,7 @@ void TicketManager::mostrarTicket(Ticket ticket)
 	cout<<"Prioridad: "<<_ticket.getPrioridad()<<endl;
 	cout<<"Estado: "<<_ticket.getEstado()<<endl;
 	cout<<"Cliente: "<<_ticket.getCliente()<<endl;
-	//cout<<"Responsable Asignado: "<<getResponsable().getUser()<<endl;
+	cout<<"Responsable Asignado: "<<_ticket.getResponsable()<<endl;
 	cout<<"Fecha de Creacion: "<<_ticket.getFechaCreacion().toString()<<endl;
 	cout<<"Fecha Limite: "<<_ticket.getFechaLimite().toString()<<endl;
 }
@@ -114,4 +118,10 @@ void TicketManager::leerTodos()
 int TicketManager::generarNuevoId()
 {
 	return _ticketArch.getCantidad() + 1;
+}
+
+void TicketManager::asignarResponsable(){
+
+
+
 }

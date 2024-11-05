@@ -1,170 +1,99 @@
 #include <iostream>
-#include "Cliente.h"
-#include "Responsable.h"
+#include "Usuario.h"
 #include "UsuarioArchivo.h"
+#include "UsuarioManager.h"
 #include "Ticket.h"
 #include "TicketArchivo.h"
+#include "TicketManager.h"
 using namespace std;
 
 
-void cargarCliente();
-void listarClientes();
-void cargarResponsable();
-void listarResponsables();
 void cargarTicket();
 void listarTickets();
 
-bool logIn(Usuario usuario);
+Usuario logIn(string fileName);
 
 int main()
 {
-	/*int usuario = 3;
-	while(usuario != 0){
-	cout<<"CARGA DE USUARIO"<<endl<<endl;
+	///CARGA DE USUARIO
 
-	cout<<"1 - Cliente"<<endl;
-	cout<<"2 - Responsable"<<endl;
+	int usuario = 3;
+	string fileName;
 
+	cout<<"INICIAR SESION"<<endl;
+	cout<<"1 - CLIENTE"<<endl;
+	cout<<"2 - RESPONSABLE"<<endl;
+	cout<<"0 - CERRAR PROGRAMA"<<endl;
 	cin>>usuario;
+
+	if(usuario == 1)
+	{
+		fileName = "clientes.dat";
+	}else if(usuario == 2){
+		fileName = "responsables.dat";
+	}
+
 	cin.ignore();
 
-	switch(usuario)
-	{
-	case 1:
-		cargarCliente();
-		listarClientes();
-	break;
-	case 2:
-	cargarResponsable();
-	*/listarResponsables();/*
-	}
-	}  */
+	UsuarioManager userMan;
 
-	//cargarTicket();
-	//listarTickets();
+	userMan.cargarUsuario(fileName);
+	//userMan.ListarTodos(fileName);
+	//userMan.ListarXId(fileName);
 
 
-	//cout<<"CLIENTE: "<<sizeof(Cliente)<<endl;
-	//cout<<"RESPONSABLE: "<<sizeof(Responsable)<<endl;
 
-	Responsable c;
-	logIn(c);
+	//UsuarioManager userMan;
+	/*userMan.leerTodos(fileName);
+	Usuario usActivo;
+	system("pause");
+
+	usActivo = logIn(fileName);
+
+	TicketManager ticketMan;
+
+	ticketMan.cargarTicket(usActivo);
+	ticketMan.leerTodos();
+	*/
 	return 0;
 }
 
-void cargarCliente()
-{
-	Cliente c1;
-	UsuarioArchivo cArch;
-
-	c1.cargarCliente("clientes.dat");
-
-	if(cArch.guardar(c1))
-	{
-		cout << "Registro de cliente existoso"<<endl;
-	}
-	else
-	{
-		cout << "No se pudo registrar el cliente" << endl;
-	}
-
-	system("pause");
-}
-
-void listarClientes()
-{
-
-	UsuarioArchivo cArch;
-	cArch.leerTodos("clientes.dat");
-
-	system("pause");
-}
-
-void cargarResponsable()
-{
-	Responsable r1;
-	UsuarioArchivo rArch;
-
-	r1.cargarResponsable("responsables.dat");
-
-	if(rArch.guardar(r1))
-	{
-		cout << "Registro de Responsable existoso"<<endl;
-	}
-	else
-	{
-		cout << "No se pudo registrar el Responsable" << endl;
-	}
-
-	system("pause");
-}
-
-void listarResponsables()
-{
-
-	UsuarioArchivo cArch;
-	cArch.leerTodos("responsables.dat");
-
-	system("pause");
-}
-
-void cargarTicket()
-{
-
-	Ticket t1;
-	TicketArchivo tArch;
-
-	t1.cargarTicket();
-
-	if(tArch.guardar(t1))
-	{
-		cout << "Creacion de Ticket existoso"<<endl;
-	}
-	else
-	{
-		cout << "No se pudo crear el Ticket" << endl;
-	}
-
-
-}
-
-void listarTickets()
-{
-
-	TicketArchivo tArch;
-	tArch.leerTodos();
-
-	system("pause");
-}
-
-bool logIn(Usuario usuario)
+Usuario logIn(string fileName)
 {
 	UsuarioArchivo uArch;
+	Usuario usuario;
 	string user, passw;
+
 	bool userCheck{},passwCheck{};
 	while(!userCheck || !passwCheck)
 	{
-	system("cls");
+		system("cls");
 		cout<<"INGRESAR NOMBRE DE USUARIO: ";
 		cin>> user;
 
-		userCheck = uArch.validarUser(user,usuario);
+		userCheck = uArch.validarUser(user,fileName);
 		if(!userCheck)
 		{
 			cout<<"EL USUARIO NO EXISTE"<<endl;
 			system("pause");
-		}else{
-		cout<<"INGRESAR CONTRASENA: ";
-		cin>> passw;
-
-		passwCheck = uArch.validarPass(passw,usuario);
-
-		if(!passwCheck)
+		}
+		else
 		{
-			cout<<"LA CONTRASENA ES INCORRECTA"<<endl<<endl;
-		} }
+			cout<<"INGRESAR CONTRASENA: ";
+			cin>> passw;
 
+			passwCheck = uArch.validarPass(passw,fileName);
+
+			if(!passwCheck)
+			{
+				cout<<"LA CONTRASENA ES INCORRECTA"<<endl<<endl;
+				system("pause");
+
+			}
+		}
 	}
+
+
 	system("cls");
-	return true;
+	return usuario = usuario.getUsuario(fileName,user);
 }

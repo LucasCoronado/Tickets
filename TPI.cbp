@@ -34,16 +34,14 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="Cliente.cpp" />
-		<Unit filename="Cliente.h" />
 		<Unit filename="Fecha.cpp" />
 		<Unit filename="Fecha.h" />
-		<Unit filename="Responsable.cpp" />
-		<Unit filename="Responsable.h" />
 		<Unit filename="Ticket.cpp" />
 		<Unit filename="Ticket.h" />
 		<Unit filename="TicketArchivo.cpp" />
 		<Unit filename="TicketArchivo.h" />
+		<Unit filename="TicketManager.cpp" />
+		<Unit filename="TicketManager.h" />
 		<Unit filename="Usuario.cpp" />
 		<Unit filename="Usuario.h" />
 		<Unit filename="UsuarioArchivo.cpp" />

@@ -12,10 +12,11 @@ public:
 	void cargarUsuario(std::string fileName);
 	void mostrarUsuario(Usuario usuario);
 
-	void ListarTodos(std::string fileName);
-    void ListarXId(std::string fileName);
+	void leerTodos(std::string fileName);
+    void leerPorId(std::string fileName);
 
 	int generarNuevoId(std::string fileName);
+
 
 
 private:

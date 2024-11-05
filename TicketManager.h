@@ -1,6 +1,7 @@
 #pragma once
 #include "Ticket.h"
 #include "TicketArchivo.h"
+#include "UsuarioArchivo.h"
 
 
 class TicketManager
@@ -14,6 +15,8 @@ public:
 
 	void leerTodos();
 	int generarNuevoId();
+
+	void asignarResponsable();
 
 private:
     Ticket _ticket;
