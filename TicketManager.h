@@ -16,7 +16,8 @@ public:
 	void leerTodos();
 	int generarNuevoId();
 
-	void asignarResponsable();
+
+	void buscarPorIdUsuario(int idUser);
 
 private:
     Ticket _ticket;

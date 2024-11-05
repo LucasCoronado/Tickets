@@ -120,8 +120,18 @@ int TicketManager::generarNuevoId()
 	return _ticketArch.getCantidad() + 1;
 }
 
-void TicketManager::asignarResponsable(){
+void TicketManager::buscarPorIdUsuario(int idUser)
+{
 
-
+	int i, cantidadRegistros = _ticketArch.getCantidad();
+	for(i=0; i<cantidadRegistros; i++)
+	{
+		_ticket = _ticketArch.leer(i);
+		if (_ticket.getCliente() == idUser)
+		{
+		 mostrarTicket(_ticket);
+		 cout<<endl;
+		}
+	}
 
 }

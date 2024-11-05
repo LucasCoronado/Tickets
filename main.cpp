@@ -29,7 +29,9 @@ int main()
 	if(usuario == 1)
 	{
 		fileName = "clientes.dat";
-	}else if(usuario == 2){
+	}
+	else if(usuario == 2)
+	{
 		fileName = "responsables.dat";
 	}
 
@@ -37,24 +39,52 @@ int main()
 
 	UsuarioManager userMan;
 
-	userMan.cargarUsuario(fileName);
-	//userMan.ListarTodos(fileName);
-	//userMan.ListarXId(fileName);
-
-
 
 	//UsuarioManager userMan;
-	/*userMan.leerTodos(fileName);
 	Usuario usActivo;
-	system("pause");
-
 	usActivo = logIn(fileName);
-
 	TicketManager ticketMan;
+	int opcion = 3;
 
-	ticketMan.cargarTicket(usActivo);
-	ticketMan.leerTodos();
-	*/
+	if(usActivo.getPermiso()=="Cliente")
+	{
+		while(opcion!=0)
+		{
+			cout<<"1 - CARGAR TICKET"<<endl;
+			cout<<"2 - VER TICKETS"<<endl;
+			cout<<"0 - CERRAR PROGRAMA"<<endl;
+			cin>>opcion;
+
+			switch(opcion)
+			{
+
+			case 1:
+			{
+				ticketMan.cargarTicket(usActivo);
+				break;
+			}
+
+			case 2:
+			{
+				ticketMan.buscarPorIdUsuario(usActivo.getId());
+				break;
+			}
+			}
+
+			system("pause");
+			system("cls");
+		}
+	}
+	else if(usActivo.getPermiso()=="Responsable")
+	{
+
+	}
+	else if(usActivo.getPermiso()=="Admin")
+	{
+		//userMan.cargarUsuario(fileName);
+		//ticketMan.leerTodos();
+	}
+
 	return 0;
 }
 

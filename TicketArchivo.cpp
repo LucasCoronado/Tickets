@@ -86,3 +86,4 @@ int TicketArchivo::buscar(int id)
 	}
 	return -1;
 }
+

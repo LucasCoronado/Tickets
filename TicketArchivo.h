@@ -13,6 +13,7 @@ public:
 
 	int buscar(int id);
 
+
 	private:
 	std::string _fileName;
 };
