@@ -15,8 +15,6 @@ Usuario logIn(string fileName);
 
 int main()
 {
-	///CARGA DE USUARIO
-
 	int usuario = 3;
 	string fileName;
 
@@ -84,6 +82,7 @@ int main()
 		//userMan.cargarUsuario(fileName);
 		//ticketMan.leerTodos();
 	}
+
 
 	return 0;
 }

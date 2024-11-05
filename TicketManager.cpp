@@ -80,8 +80,8 @@ void TicketManager::cargarTicket(Usuario usuario)
 	_ticket.setId(generarNuevoId());
 	_ticket.setCliente(usuario.getId());
 
-	//UsuarioArchivo usAr;
-	//_ticket.setResponsable(usAr.asignarResponsable());
+	UsuarioArchivo usAr("responsables.dat");
+	_ticket.setResponsable(usAr.asignarResponsable());
 
 	_ticketArch.guardar(_ticket);
 
@@ -90,15 +90,16 @@ void TicketManager::cargarTicket(Usuario usuario)
 
 void TicketManager::mostrarTicket(Ticket ticket)
 {
-
+	UsuarioArchivo cliente("clientes.dat");
+	UsuarioArchivo resp("responsables.dat");
 	cout<<"TICKET #"<<_ticket.getId()<<endl<<endl;
 
 	cout<<"Titulo: "<<_ticket.getTitulo()<<endl;
 	cout<<"Descripcion: "<<_ticket.getDescripcion()<<endl;
 	cout<<"Prioridad: "<<_ticket.getPrioridad()<<endl;
 	cout<<"Estado: "<<_ticket.getEstado()<<endl;
-	cout<<"Cliente: "<<_ticket.getCliente()<<endl;
-	cout<<"Responsable Asignado: "<<_ticket.getResponsable()<<endl;
+	cout<<"Cliente: "<<cliente.leer(_ticket.getCliente()).getUser()<<endl;
+	cout<<"Responsable Asignado: "<<resp.leer(_ticket.getResponsable()).getUser()<<endl;
 	cout<<"Fecha de Creacion: "<<_ticket.getFechaCreacion().toString()<<endl;
 	cout<<"Fecha Limite: "<<_ticket.getFechaLimite().toString()<<endl;
 }
