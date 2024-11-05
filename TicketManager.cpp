@@ -136,3 +136,31 @@ void TicketManager::buscarPorIdUsuario(int idUser)
 	}
 
 }
+
+void TicketManager::mostrarOrdenadosPorPrioridad(int idUser){
+
+	for(int i=0;i<_ticketArch.getCantidad();i++){
+
+		_ticket = _ticketArch.leer(i);
+		if(_ticket.getPrioridad()=="ALTA" && _ticket.getCliente() == idUser){
+			mostrarTicket(_ticket);
+			cout<<endl;
+		}
+	}
+	for(int i=0;i<_ticketArch.getCantidad();i++){
+
+		_ticket = _ticketArch.leer(i);
+		if(_ticket.getPrioridad()=="MEDIA" && _ticket.getCliente() == idUser){
+			mostrarTicket(_ticket);
+			cout<<endl;
+		}
+	}for(int i=0;i<_ticketArch.getCantidad();i++){
+
+		_ticket = _ticketArch.leer(i);
+		if(_ticket.getPrioridad()=="BAJA" && _ticket.getCliente() == idUser){
+			mostrarTicket(_ticket);
+			cout<<endl;
+		}
+	}
+
+}

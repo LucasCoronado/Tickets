@@ -18,6 +18,7 @@ public:
 
 
 	void buscarPorIdUsuario(int idUser);
+    void mostrarOrdenadosPorPrioridad(int idUser);
 
 private:
     Ticket _ticket;

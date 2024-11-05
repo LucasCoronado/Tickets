@@ -36,9 +36,6 @@ int main()
 	cin.ignore();
 
 	UsuarioManager userMan;
-
-
-	//UsuarioManager userMan;
 	Usuario usActivo;
 	usActivo = logIn(fileName);
 	TicketManager ticketMan;
@@ -49,7 +46,8 @@ int main()
 		while(opcion!=0)
 		{
 			cout<<"1 - CARGAR TICKET"<<endl;
-			cout<<"2 - VER TICKETS"<<endl;
+			cout<<"2 - VER TODOS LOS TICKETS"<<endl;
+			/// TODO cout<<"3 - VER TICKETS ESPERANDO REVISION"<<endl;
 			cout<<"0 - CERRAR PROGRAMA"<<endl;
 			cin>>opcion;
 
@@ -65,6 +63,7 @@ int main()
 			case 2:
 			{
 				ticketMan.buscarPorIdUsuario(usActivo.getId());
+				cout<<"----------------"<<endl;
 				break;
 			}
 			}
