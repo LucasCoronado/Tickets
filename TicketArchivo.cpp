@@ -59,7 +59,7 @@ Ticket TicketArchivo::leer(int pos)
 
 	FILE *pFile = fopen(_fileName.c_str(), "rb");
 
-	if(pFile == NULL)
+	if(pFile == nullptr)
 	{
 		return ticket;
 	}
@@ -86,4 +86,5 @@ int TicketArchivo::buscar(int id)
 	}
 	return -1;
 }
+
 

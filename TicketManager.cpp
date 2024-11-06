@@ -93,16 +93,16 @@ void TicketManager::mostrarTicket(Ticket ticket)
 {
 	UsuarioArchivo cliente("clientes.dat");
 	UsuarioArchivo resp("responsables.dat");
-	cout<<"TICKET #"<<_ticket.getId()<<endl<<endl;
+	cout<<"TICKET #"<<ticket.getId()<<endl<<endl;
 
-	cout<<"Titulo: "<<_ticket.getTitulo()<<endl;
-	cout<<"Descripcion: "<<_ticket.getDescripcion()<<endl;
-	cout<<"Prioridad: "<<_ticket.getPrioridad()<<endl;
-	cout<<"Estado: "<<_ticket.getEstado()<<endl;
-	cout<<"Cliente: "<<cliente.leer(_ticket.getCliente()-1).getUser()<<endl;
-	cout<<"Responsable Asignado: "<<resp.leer(_ticket.getResponsable()-1).getUser()<<endl;
-	cout<<"Fecha de Creacion: "<<_ticket.getFechaCreacion().toString()<<endl;
-	cout<<"Fecha Limite: "<<_ticket.getFechaLimite().toString()<<endl;
+	cout<<"Titulo: "<<ticket.getTitulo()<<endl;
+	cout<<"Descripcion: "<<ticket.getDescripcion()<<endl;
+	cout<<"Prioridad: "<<ticket.getPrioridad()<<endl;
+	cout<<"Estado: "<<ticket.getEstado()<<endl;
+	cout<<"Cliente: "<<cliente.leer(ticket.getCliente()-1).getUser()<<endl;
+	cout<<"Responsable Asignado: "<<resp.leer(ticket.getResponsable()-1).getUser()<<endl;
+	cout<<"Fecha de Creacion: "<<ticket.getFechaCreacion().toString()<<endl;
+	cout<<"Fecha Limite: "<<ticket.getFechaLimite().toString()<<endl;
 
 }
 
@@ -122,6 +122,7 @@ int TicketManager::generarNuevoId()
 {
 	return _ticketArch.getCantidad() + 1;
 }
+
 
 void TicketManager::buscarPorIdUsuario(int idUser, string tipoUser)
 {
