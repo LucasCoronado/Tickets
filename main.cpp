@@ -49,7 +49,7 @@ int main()
 		while(opcion!=0)
 		{
 
-			userMan.mostrarUsuario(usActivo);
+			cout<<"Hola "<<usActivo.getUser()<<endl;
 			cout<<"1 - CARGAR TICKET"<<endl;
 			cout<<"2 - VER TODOS LOS TICKETS"<<endl;
 			/// TODO cout<<"3 - VER TICKETS ESPERANDO REVISION"<<endl;
@@ -83,7 +83,7 @@ int main()
 		{
 
 			cout<<"1 - VER TICKETS ASIGNADOS"<<endl;
-			cout<<"2 - VER TICKET POR ID"<<endl;
+			cout<<"2 - CAMBIAR ESTADO DE TICKET"<<endl;
 			cout<<"0 - CERRAR PROGRAMA"<<endl;
 			cin>>opcion;
 
@@ -97,7 +97,7 @@ int main()
 			}
 			case 2:
 			{
-				int id;
+				int id,op;
 				cout<<"INGRESAR ID: ";
 				cin>>id;
 
@@ -107,6 +107,15 @@ int main()
 					ticketMan.mostrarTicket(ticket);
 				}else{
 					cout<<"EL NUMERO DE ID NO CORRESPONDE A UN TICKET TUYO";
+				}
+
+				cout<<"DESEA INICIAR A TRABAJAR EN EL TICKET ?"<<endl;
+				cout<<"1 - SI / 2 - NO"<<endl;
+				cin>>op;
+
+				if(op==1){
+					ticketAr.cambiarEstado(ticket,"En progreso",id);
+					cout<<"El nuevo estado del ticket es: En progreso"<<endl;
 				}
 				break;
 			}

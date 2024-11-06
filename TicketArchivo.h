@@ -12,6 +12,7 @@ public:
 	Ticket leer(int pos);
 
 	int buscar(int id);
+	bool cambiarEstado(Ticket ticket,std::string estado, int pos);
 
 
 	private:

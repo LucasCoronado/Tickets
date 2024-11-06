@@ -87,4 +87,20 @@ int TicketArchivo::buscar(int id)
 	return -1;
 }
 
+bool TicketArchivo::cambiarEstado(Ticket ticket,string estado, int pos){
+
+	FILE *pFile;
+	pFile=fopen(_fileName.c_str(),"rb+");
+
+	if(pFile ==nullptr){
+		return false;
+	}
+	ticket.setEstado(estado);
+	fseek(pFile,pos*sizeof(Ticket),SEEK_SET);
+
+	bool escribio=fwrite(&ticket,sizeof(Ticket),1,pFile);
+	fclose(pFile);
+	return escribio;
+}
+
 
