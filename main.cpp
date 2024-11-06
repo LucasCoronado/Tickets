@@ -11,6 +11,7 @@ Usuario logIn(string fileName);
 
 int main()
 {
+	// /*
 	int usuario = 3;
 	string fileName;
 
@@ -52,7 +53,7 @@ int main()
 			cout<<"Hola "<<usActivo.getUser()<<endl;
 			cout<<"1 - CARGAR TICKET"<<endl;
 			cout<<"2 - VER TODOS LOS TICKETS"<<endl;
-			/// TODO cout<<"3 - VER TICKETS ESPERANDO REVISION"<<endl;
+			cout<<"3 - VER TICKETS ESPERANDO REVISION"<<endl;
 			cout<<"0 - CERRAR PROGRAMA"<<endl;
 			cin>>opcion;
 
@@ -70,6 +71,10 @@ int main()
 				ticketMan.buscarPorIdUsuario(usActivo.getId(),"CLIENTE");
 				cout<<"----------------"<<endl;
 				break;
+			}
+			case 3:
+			{
+
 			}
 			}
 
@@ -97,25 +102,37 @@ int main()
 			}
 			case 2:
 			{
-				int id,op;
+				Ticket ticket;
+
+				int id,op = 3;
 				cout<<"INGRESAR ID: ";
 				cin>>id;
 
-				Ticket ticket;
-				ticket = ticketAr.leer(id-1);
-				if(ticket.getResponsable() == usActivo.getId()){
-					ticketMan.mostrarTicket(ticket);
-				}else{
-					cout<<"EL NUMERO DE ID NO CORRESPONDE A UN TICKET TUYO";
-				}
+				int pos = ticketAr.buscar(id);
+				ticket = ticketAr.leer(pos);
 
+				if(ticket.getResponsable() == usActivo.getId())
+				{
+					ticketMan.mostrarTicket(ticket);
 				cout<<"DESEA INICIAR A TRABAJAR EN EL TICKET ?"<<endl;
 				cout<<"1 - SI / 2 - NO"<<endl;
 				cin>>op;
+				}
+				else
+				{
+					cout<<"EL NUMERO DE ID NO CORRESPONDE A UN TICKET TUYO"<<endl;
+				}
 
-				if(op==1){
-					ticketAr.cambiarEstado(ticket,"En progreso",id);
-					cout<<"El nuevo estado del ticket es: En progreso"<<endl;
+
+				if(op==1)
+				{
+					ticket.setEstado("En progreso");
+					if(ticketAr.cambiarEstado(ticket,pos))
+					{
+						cout<<"El nuevo estado del ticket es: En progreso"<<endl ;
+					}else{
+						cout<<"No se pudo actualizar el estado"<<endl;
+					}
 				}
 				break;
 			}
@@ -129,6 +146,11 @@ int main()
 		//userMan.cargarUsuario(fileName);
 		//ticketMan.leerTodos();
 	}
+	// */
+	 /*
+	TicketManager ticketMan;
+	ticketMan.leerTodos();
+	 */
 	return 0;
 }
 

@@ -87,7 +87,7 @@ int TicketArchivo::buscar(int id)
 	return -1;
 }
 
-bool TicketArchivo::cambiarEstado(Ticket ticket,string estado, int pos){
+bool TicketArchivo::cambiarEstado(Ticket ticket, int pos){
 
 	FILE *pFile;
 	pFile=fopen(_fileName.c_str(),"rb+");
@@ -95,10 +95,9 @@ bool TicketArchivo::cambiarEstado(Ticket ticket,string estado, int pos){
 	if(pFile ==nullptr){
 		return false;
 	}
-	ticket.setEstado(estado);
 	fseek(pFile,pos*sizeof(Ticket),SEEK_SET);
 
-	bool escribio=fwrite(&ticket,sizeof(Ticket),1,pFile);
+	bool escribio=fwrite(&ticket,sizeof(Ticket),1,pFile)==1;
 	fclose(pFile);
 	return escribio;
 }
