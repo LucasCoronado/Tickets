@@ -36,15 +36,21 @@ int main()
 	cin.ignore();
 
 	UsuarioManager userMan;
+	userMan.leerTodos(fileName);
+	system("pause");
 	Usuario usActivo;
 	usActivo = logIn(fileName);
 	TicketManager ticketMan;
 	int opcion = 3;
 
+	//userMan.cargarUsuario(fileName);
+
 	if(usActivo.getPermiso()=="Cliente")
 	{
 		while(opcion!=0)
 		{
+
+			userMan.mostrarUsuario(usActivo);
 			cout<<"1 - CARGAR TICKET"<<endl;
 			cout<<"2 - VER TODOS LOS TICKETS"<<endl;
 			/// TODO cout<<"3 - VER TICKETS ESPERANDO REVISION"<<endl;
@@ -62,7 +68,7 @@ int main()
 
 			case 2:
 			{
-				ticketMan.buscarPorIdUsuario(usActivo.getId());
+				ticketMan.buscarPorIdUsuario(usActivo.getId(),"CLIENTE");
 				cout<<"----------------"<<endl;
 				break;
 			}
@@ -74,7 +80,25 @@ int main()
 	}
 	else if(usActivo.getPermiso()=="Responsable")
 	{
+		while(opcion!=0)
+		{
 
+			cout<<"1 - VER TICKETS ASIGNADOS"<<endl;
+			cout<<"2 - VER TICKET POR ID"<<endl;
+			cout<<"0 - CERRAR PROGRAMA"<<endl;
+			cin>>opcion;
+
+			switch(opcion)
+			{
+
+			case 1:
+			{
+				ticketMan.buscarPorIdUsuario(usActivo.getId(),"RESPONSABLE");
+			}
+			}
+			system("pause");
+			system("cls");
+		}
 	}
 	else if(usActivo.getPermiso()=="Admin")
 	{

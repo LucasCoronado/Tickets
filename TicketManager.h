@@ -2,6 +2,7 @@
 #include "Ticket.h"
 #include "TicketArchivo.h"
 #include "UsuarioArchivo.h"
+#include "UsuarioManager.h"
 
 
 class TicketManager
@@ -17,7 +18,7 @@ public:
 	int generarNuevoId();
 
 
-	void buscarPorIdUsuario(int idUser);
+	void buscarPorIdUsuario(int idUser, std::string tipoUser);
     void mostrarOrdenadosPorPrioridad(int idUser);
 
 private:

@@ -78,6 +78,7 @@ void TicketManager::cargarTicket(Usuario usuario)
 
 	_ticket.setEstado("Pendiente");
 	_ticket.setId(generarNuevoId());
+
 	_ticket.setCliente(usuario.getId());
 
 	UsuarioArchivo usAr("responsables.dat");
@@ -98,10 +99,11 @@ void TicketManager::mostrarTicket(Ticket ticket)
 	cout<<"Descripcion: "<<_ticket.getDescripcion()<<endl;
 	cout<<"Prioridad: "<<_ticket.getPrioridad()<<endl;
 	cout<<"Estado: "<<_ticket.getEstado()<<endl;
-	cout<<"Cliente: "<<cliente.leer(_ticket.getCliente()).getUser()<<endl;
-	cout<<"Responsable Asignado: "<<resp.leer(_ticket.getResponsable()).getUser()<<endl;
+	cout<<"Cliente: "<<cliente.leer(_ticket.getCliente()-1).getUser()<<endl;
+	cout<<"Responsable Asignado: "<<resp.leer(_ticket.getResponsable()-1).getUser()<<endl;
 	cout<<"Fecha de Creacion: "<<_ticket.getFechaCreacion().toString()<<endl;
 	cout<<"Fecha Limite: "<<_ticket.getFechaLimite().toString()<<endl;
+
 }
 
 void TicketManager::leerTodos()
@@ -121,43 +123,62 @@ int TicketManager::generarNuevoId()
 	return _ticketArch.getCantidad() + 1;
 }
 
-void TicketManager::buscarPorIdUsuario(int idUser)
+void TicketManager::buscarPorIdUsuario(int idUser, string tipoUser)
 {
-
 	int i, cantidadRegistros = _ticketArch.getCantidad();
 	for(i=0; i<cantidadRegistros; i++)
 	{
 		_ticket = _ticketArch.leer(i);
-		if (_ticket.getCliente() == idUser)
+		if(tipoUser == "CLIENTE")
 		{
-		 mostrarTicket(_ticket);
-		 cout<<endl;
+			if (_ticket.getCliente() == idUser)
+			{
+				mostrarTicket(_ticket);
+				cout<<endl;
+			}
 		}
+		if(tipoUser == "RESPONSABLE")
+		{
+			if (_ticket.getResponsable() == idUser)
+			{
+				mostrarTicket(_ticket);
+				cout<<endl;
+			}
+		}
+
 	}
 
 }
 
-void TicketManager::mostrarOrdenadosPorPrioridad(int idUser){
+void TicketManager::mostrarOrdenadosPorPrioridad(int idUser)
+{
 
-	for(int i=0;i<_ticketArch.getCantidad();i++){
+	for(int i=0; i<_ticketArch.getCantidad(); i++)
+	{
 
 		_ticket = _ticketArch.leer(i);
-		if(_ticket.getPrioridad()=="ALTA" && _ticket.getCliente() == idUser){
+		if(_ticket.getPrioridad()=="ALTA" && _ticket.getCliente() == idUser)
+		{
 			mostrarTicket(_ticket);
 			cout<<endl;
 		}
 	}
-	for(int i=0;i<_ticketArch.getCantidad();i++){
+	for(int i=0; i<_ticketArch.getCantidad(); i++)
+	{
 
 		_ticket = _ticketArch.leer(i);
-		if(_ticket.getPrioridad()=="MEDIA" && _ticket.getCliente() == idUser){
+		if(_ticket.getPrioridad()=="MEDIA" && _ticket.getCliente() == idUser)
+		{
 			mostrarTicket(_ticket);
 			cout<<endl;
 		}
-	}for(int i=0;i<_ticketArch.getCantidad();i++){
+	}
+	for(int i=0; i<_ticketArch.getCantidad(); i++)
+	{
 
 		_ticket = _ticketArch.leer(i);
-		if(_ticket.getPrioridad()=="BAJA" && _ticket.getCliente() == idUser){
+		if(_ticket.getPrioridad()=="BAJA" && _ticket.getCliente() == idUser)
+		{
 			mostrarTicket(_ticket);
 			cout<<endl;
 		}
