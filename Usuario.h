@@ -16,7 +16,6 @@ public:
 	std::string getUser();
 	std::string getPassw();
 	std::string getPermiso();
-	std::string getFileName();
 
 	void setId(int id);
 	void setNombre(std::string nombre);
@@ -24,7 +23,6 @@ public:
 	void setUser(std::string user);
 	bool setPassw(std::string passw);
 	void setPermiso(std::string permiso);
-	void setFileName(std::string fileName);
 
 	Usuario getUsuario(std::string fileName,std::string user);
 
@@ -37,6 +35,5 @@ private:
 	char _passw[30];
 
 	char _permiso[30];  // Puede ser "Cliente","Responsable","Admin"
-	char _fileName[20];
 };
 

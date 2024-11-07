@@ -12,142 +12,195 @@ Usuario logIn(string fileName);
 int main()
 {
 	// /*
-	int usuario = 3;
+	int usuario = -1;
+	int opcion = -1;
 	string fileName;
-
-	cout<<"INICIAR SESION"<<endl;
-	cout<<"1 - CLIENTE"<<endl;
-	cout<<"2 - RESPONSABLE"<<endl;
-	cout<<"0 - CERRAR PROGRAMA"<<endl;
-	cin>>usuario;
-
-	if(usuario == 1)
+	while(opcion!=9)
 	{
-		fileName = "clientes.dat";
-	}
-	else if(usuario == 2)
-	{
-		fileName = "responsables.dat";
-	}
+		cout<<"INICIAR SESION"<<endl;
+		cout<<"1 - CLIENTE"<<endl;
+		cout<<"2 - RESPONSABLE"<<endl;
+		cout<<"0 - CERRAR PROGRAMA"<<endl;
+		cin>>usuario;
 
-	cin.ignore();
-
-	UsuarioManager userMan;
-	userMan.leerTodos(fileName);
-	system("pause");
-
-	Usuario usActivo;
-	usActivo = logIn(fileName);
-
-	TicketManager ticketMan;
-	TicketArchivo ticketAr;
-	int opcion = 3;
-
-	//userMan.cargarUsuario(fileName);
-
-	if(usActivo.getPermiso()=="Cliente")
-	{
-		while(opcion!=0)
+		if(usuario == 1)
 		{
-
-			cout<<"Hola "<<usActivo.getUser()<<endl;
-			cout<<"1 - CARGAR TICKET"<<endl;
-			cout<<"2 - VER TODOS LOS TICKETS"<<endl;
-			cout<<"3 - VER TICKETS ESPERANDO REVISION"<<endl;
-			cout<<"0 - CERRAR PROGRAMA"<<endl;
-			cin>>opcion;
-
-			switch(opcion)
-			{
-
-			case 1:
-			{
-				ticketMan.cargarTicket(usActivo);
-				break;
-			}
-
-			case 2:
-			{
-				ticketMan.buscarPorIdUsuario(usActivo.getId(),"CLIENTE");
-				cout<<"----------------"<<endl;
-				break;
-			}
-			case 3:
-			{
-
-			}
-			}
-
-			system("pause");
-			system("cls");
+			fileName = "clientes.dat";
 		}
-	}
-	else if(usActivo.getPermiso()=="Responsable")
-	{
-		while(opcion!=0)
+		else if(usuario == 2)
 		{
+			fileName = "responsables.dat";
+		}else{
+			return 0;
+		}
 
-			cout<<"1 - VER TICKETS ASIGNADOS"<<endl;
-			cout<<"2 - CAMBIAR ESTADO DE TICKET"<<endl;
-			cout<<"0 - CERRAR PROGRAMA"<<endl;
-			cin>>opcion;
+		cin.ignore();
 
-			switch(opcion)
+		UsuarioManager userMan;
+		//userMan.leerTodos(fileName);
+		//system("pause");
+
+		Usuario usActivo;
+		usActivo = logIn(fileName);
+
+		Ticket ticket;
+		TicketManager ticketMan;
+		TicketArchivo ticketAr;
+
+
+		//userMan.cargarUsuario(fileName);
+		opcion = -1;
+		if(usActivo.getPermiso()=="Cliente")
+		{
+			while(opcion!=0)
 			{
 
-			case 1:
-			{
-				ticketMan.buscarPorIdUsuario(usActivo.getId(),"RESPONSABLE");
-				break;
-			}
-			case 2:
-			{
-				Ticket ticket;
+				cout<<"Hola "<<usActivo.getUser()<<endl;
+				cout<<"TENES: "<<ticketAr.cantidadTicketsPorUsuario(usActivo)<<" TICKETS CREADOS"<<endl;
+				cout<<"1 - CARGAR TICKET"<<endl;
+				cout<<"2 - VER TODOS LOS TICKETS"<<endl;
+				cout<<"3 - TERMINAR TICKETS"<<endl;
+				cout<<"0 - CERRAR SESION"<<endl;
+				cout<<"9 - CERRAR PROGRAMA"<<endl;
+				cin>>opcion;
 
-				int id,op = 3;
-				cout<<"INGRESAR ID: ";
-				cin>>id;
-
-				int pos = ticketAr.buscar(id);
-				ticket = ticketAr.leer(pos);
-
-				if(ticket.getResponsable() == usActivo.getId())
+				switch(opcion)
 				{
-					ticketMan.mostrarTicket(ticket);
-				cout<<"DESEA INICIAR A TRABAJAR EN EL TICKET ?"<<endl;
-				cout<<"1 - SI / 2 - NO"<<endl;
-				cin>>op;
+
+				case 1:
+				{
+					ticketMan.cargarTicket(usActivo);
+					break;
 				}
-				else
+
+				case 2:
 				{
-					cout<<"EL NUMERO DE ID NO CORRESPONDE A UN TICKET TUYO"<<endl;
+					ticketMan.buscarPorIdUsuario(usActivo.getId(),"CLIENTE");
+					cout<<"----------------"<<endl;
+					break;
 				}
-
-
-				if(op==1)
+				case 3:
 				{
-					ticket.setEstado("En progreso");
-					if(ticketAr.cambiarEstado(ticket,pos))
+					int id,op = 3;
+					cout<<"INGRESAR ID: ";
+					cin>>id;
+
+					int pos = ticketAr.buscar(id);
+					ticket = ticketAr.leer(pos);
+
+					if(ticket.getCliente() == usActivo.getId() && ticket.getEstado() == "En revision")
 					{
-						cout<<"El nuevo estado del ticket es: En progreso"<<endl ;
-					}else{
-						cout<<"No se pudo actualizar el estado"<<endl;
+						ticketMan.mostrarTicket(ticket);
+						cout<<"EL TICKET ESTA RESUELTO ?"<<endl;
+						cout<<"1 - SI / 2 - NO"<<endl;
+						cin>>op;
+					}
+					else
+					{
+						cout<<"EL NUMERO DE ID NO CORRESPONDE A UN TICKET TUYO O AUN NO SE HA MANDADO A REVISION"<<endl;
+					}
+
+
+					if(op==1)
+					{
+						ticketMan.cambiarEstado(ticket, "Cerrado", pos);
+					}
+					else if(op==2)
+					{
+						ticketMan.cambiarEstado(ticket, "Pendiente", pos);
 					}
 				}
-				break;
+				case 9:{
+					return 0;
+				}
+				}
+
+				system("pause");
+				system("cls");
 			}
+		}
+		else if(usActivo.getPermiso()=="Responsable")
+		{
+			while(opcion!=0)
+			{
+				cout<<"TENES: "<<ticketAr.cantidadTicketsPorUsuario(usActivo)<<" TICKETS ASIGNADOS"<<endl;
+				cout<<"1 - VER TICKETS ASIGNADOS"<<endl;
+				cout<<"2 - CAMBIAR ESTADO DE TICKET"<<endl;
+				cout<<"0 - CERRAR SESION"<<endl;
+				cout<<"9 - CERRAR PROGRAMA"<<endl;
+				cin>>opcion;
+
+				switch(opcion)
+				{
+
+				case 1:
+				{
+					ticketMan.buscarPorIdUsuario(usActivo.getId(),"RESPONSABLE");
+					break;
+				}
+				case 2:
+				{
+					int id,op = 3;
+					cout<<"INGRESAR ID: ";
+					cin>>id;
+
+					int pos = ticketAr.buscar(id);
+					ticket = ticketAr.leer(pos);
+
+					if(ticket.getResponsable() == usActivo.getId())
+					{
+						if(ticket.getEstado()=="Pendiente")
+						{
+							ticketMan.mostrarTicket(ticket);
+							cout<<"DESEA INICIAR A TRABAJAR EN EL TICKET ?"<<endl;
+							cout<<"1 - SI / 2 - NO"<<endl;
+							cin>>op;
+							if(op==1)
+							{
+								ticketMan.cambiarEstado(ticket, "En progreso", pos);
+							}
+						}
+						else if(ticket.getEstado()=="En progreso")
+						{
+							ticketMan.mostrarTicket(ticket);
+							cout<<"DESEA MANDAR A REVISION EL TICKET ?"<<endl;
+							cout<<"1 - SI / 2 - NO"<<endl;
+							cin>>op;
+							if(op==1)
+							{
+								string acciones;
+								cin.ignore();
+								cout<<"INDICAR ACCIONES REALIZADAS: ";
+								getline(cin,acciones);
+								ticket.setAcciones(acciones);
+								ticketMan.cambiarEstado(ticket, "En revision", pos);
+							}
+						}
+					}
+					else
+					{
+						cout<<"EL NUMERO DE ID NO CORRESPONDE A UN TICKET TUYO"<<endl;
+
+					}
+					break;
+				}
+				case 9:{
+					return 0;
+				}
+				}
+				system("pause");
+				system("cls");
 			}
-			system("pause");
-			system("cls");
+		}
+
+		else if(usActivo.getPermiso()=="Admin")
+		{
+			//userMan.cargarUsuario(fileName);
+			//ticketMan.leerTodos();
 		}
 	}
-	else if(usActivo.getPermiso()=="Admin")
-	{
-		//userMan.cargarUsuario(fileName);
-		//ticketMan.leerTodos();
-	}
-	// */
-	 /*
+// */
+	/*
 	TicketManager ticketMan;
 	ticketMan.leerTodos();
 	 */

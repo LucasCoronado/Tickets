@@ -18,6 +18,7 @@ public:
 
 	void buscarPorIdUsuario(int idUser, std::string tipoUser);
     void mostrarOrdenadosPorPrioridad(int idUser);
+    void cambiarEstado(Ticket ticket, std::string estado, int pos);
 
 private:
     Ticket _ticket;

@@ -12,8 +12,8 @@ public:
 	Ticket leer(int pos);
 
 	int buscar(int id);
-	bool cambiarEstado(Ticket ticket, int pos);
-
+	bool modificarTicket(Ticket ticket, int pos);
+	int cantidadTicketsPorUsuario(Usuario usuario);
 
 	private:
 	std::string _fileName;

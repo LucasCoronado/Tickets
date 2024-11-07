@@ -87,12 +87,14 @@ int TicketArchivo::buscar(int id)
 	return -1;
 }
 
-bool TicketArchivo::cambiarEstado(Ticket ticket, int pos){
+bool TicketArchivo::modificarTicket(Ticket ticket, int pos)
+{
 
 	FILE *pFile;
 	pFile=fopen(_fileName.c_str(),"rb+");
 
-	if(pFile ==nullptr){
+	if(pFile ==nullptr)
+	{
 		return false;
 	}
 	fseek(pFile,pos*sizeof(Ticket),SEEK_SET);
@@ -100,6 +102,35 @@ bool TicketArchivo::cambiarEstado(Ticket ticket, int pos){
 	bool escribio=fwrite(&ticket,sizeof(Ticket),1,pFile)==1;
 	fclose(pFile);
 	return escribio;
+}
+
+int TicketArchivo::cantidadTicketsPorUsuario(Usuario usuario)
+{
+
+	int cant=0;
+	Ticket ticket;
+	FILE *pFile;
+	pFile=fopen(_fileName.c_str(),"rb");
+
+	if(pFile==nullptr)
+	{
+		return -1;
+	}
+	while(fread(&ticket,sizeof(Ticket),1,pFile)==1)
+	{
+	 if(usuario.getPermiso() == "Cliente"){
+		if(ticket.getCliente() == usuario.getId()){
+			cant++;
+		}
+	 }else if(usuario.getPermiso() == "Responsable"){
+		if(ticket.getResponsable() == usuario.getId()){
+			cant++;
+		}
+	 }
+	}
+	fclose(pFile);
+	return cant;
+
 }
 
 

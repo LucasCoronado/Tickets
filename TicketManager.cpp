@@ -104,6 +104,10 @@ void TicketManager::mostrarTicket(Ticket ticket)
 	cout<<"Fecha de Creacion: "<<ticket.getFechaCreacion().toString()<<endl;
 	cout<<"Fecha Limite: "<<ticket.getFechaLimite().toString()<<endl;
 
+	if(ticket.getEstado()=="En revision" || ticket.getEstado()=="Cerrado"){
+		cout<<"Acciones tomadas: "<<ticket.getAcciones()<<endl;
+	}
+
 }
 
 void TicketManager::leerTodos()
@@ -183,6 +187,22 @@ void TicketManager::mostrarOrdenadosPorPrioridad(int idUser)
 			mostrarTicket(_ticket);
 			cout<<endl;
 		}
+	}
+
+}
+
+void TicketManager::cambiarEstado(Ticket ticket, string estado, int pos)
+{
+
+	ticket.setEstado(estado);
+
+	if(_ticketArch.modificarTicket(ticket,pos))
+	{
+		cout<<"El nuevo estado del ticket es: "<< estado <<endl ;
+	}
+	else
+	{
+		cout<<"No se pudo actualizar el estado"<<endl;
 	}
 
 }

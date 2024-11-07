@@ -10,8 +10,8 @@ Ticket::Ticket()
 	setDescripcion("Descripcion generica");
 	setPrioridad(1);
 	setEstado("Pendiente");
-	//setCliente(_cliente);
-	//setResponsable(_responsable);
+	setCliente(-1);
+	setResponsable(-1);
 	setFechaCreacion(_fechaCreacion);
 	setFechaLimite(_fechaLimite);
 }
@@ -32,6 +32,10 @@ string Ticket::getTitulo()
 string Ticket::getDescripcion()
 {
 	return _descripcion;
+}
+string Ticket::getAcciones()
+{
+	return _acciones;
 }
 string Ticket::getPrioridad()
 {
@@ -77,6 +81,13 @@ void Ticket::setDescripcion(string descripcion)
 	if(descripcion.size() < 100)
 	{
 		strcpy(_descripcion, descripcion.c_str());
+	}
+}
+void Ticket::setAcciones(string acciones)
+{
+	if(acciones.size() < 100)
+	{
+		strcpy(_acciones, acciones.c_str());
 	}
 }
 bool Ticket::setPrioridad(int prioridad)
