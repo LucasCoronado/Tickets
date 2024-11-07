@@ -20,6 +20,7 @@ int main()
 		cout<<"INICIAR SESION"<<endl;
 		cout<<"1 - CLIENTE"<<endl;
 		cout<<"2 - RESPONSABLE"<<endl;
+		cout<<"3 - ADMIN"<<endl;
 		cout<<"0 - CERRAR PROGRAMA"<<endl;
 		cin>>usuario;
 
@@ -27,10 +28,12 @@ int main()
 		{
 			fileName = "clientes.dat";
 		}
-		else if(usuario == 2)
+		else if(usuario == 2 || usuario == 3)
 		{
 			fileName = "responsables.dat";
-		}else{
+		}
+		else if(usuario == 0)
+		{
 			return 0;
 		}
 
@@ -40,6 +43,7 @@ int main()
 		//userMan.leerTodos(fileName);
 		//system("pause");
 
+		//userMan.cargarUsuario(fileName); CARGAR USUARIOS
 		Usuario usActivo;
 		usActivo = logIn(fileName);
 
@@ -48,7 +52,6 @@ int main()
 		TicketArchivo ticketAr;
 
 
-		//userMan.cargarUsuario(fileName);
 		opcion = -1;
 		if(usActivo.getPermiso()=="Cliente")
 		{
@@ -57,6 +60,7 @@ int main()
 
 				cout<<"Hola "<<usActivo.getUser()<<endl;
 				cout<<"TENES: "<<ticketAr.cantidadTicketsPorUsuario(usActivo)<<" TICKETS CREADOS"<<endl;
+
 				cout<<"1 - CARGAR TICKET"<<endl;
 				cout<<"2 - VER TODOS LOS TICKETS"<<endl;
 				cout<<"3 - TERMINAR TICKETS"<<endl;
@@ -109,8 +113,10 @@ int main()
 					{
 						ticketMan.cambiarEstado(ticket, "Pendiente", pos);
 					}
+					break;
 				}
-				case 9:{
+				case 9:
+				{
 					return 0;
 				}
 				}
@@ -184,7 +190,8 @@ int main()
 					}
 					break;
 				}
-				case 9:{
+				case 9:
+				{
 					return 0;
 				}
 				}
@@ -197,6 +204,41 @@ int main()
 		{
 			//userMan.cargarUsuario(fileName);
 			//ticketMan.leerTodos();
+			while(opcion!=0){
+			cout<<"1 - VER CLIENTES"<<endl;
+			cout<<"2 - VER RESPONSABLES"<<endl;
+			cout<<"3 - VER TODOS LOS TICKETS"<<endl;
+			cout<<"4 - VER TICKETS ABIERTOS"<<endl;
+			cout<<"5 - VER TICKETS CERRADOS"<<endl;
+			cout<<"6 - CARGAR NUEVO USUARIO"<<endl;
+			cout<<"0 - CERRAR SESION"<<endl;
+			cout<<"9 - CERRAR PROGRAMA"<<endl;
+			cin>>opcion;
+
+			switch(opcion){
+
+				case 1:{
+					userMan.leerTodos("clientes.dat");
+					system("pause");
+					break;
+				}
+				case 2:{
+					userMan.leerTodos("responsables.dat");
+					system("pause");
+					break;
+				}
+				case 3:{
+					ticketMan.leerTodos();
+					system("pause");
+					break;
+				}
+				case 9:{
+					return 0;
+				}
+			}
+
+			system("cls");
+			}
 		}
 	}
 // */

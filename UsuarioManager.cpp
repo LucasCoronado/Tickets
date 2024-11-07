@@ -113,4 +113,37 @@ int UsuarioManager::generarNuevoId(string fileName)
 	return uArchivo.getCantidad() + 1;
 }
 
+int UsuarioManager::asignarResponsable()
+{
+
+	Usuario usuario;
+	UsuarioArchivo uArch("responsables.dat");
+
+	int cant = uArch.getCantidad();
+
+	TicketArchivo tArch;
+	int *vResponsables = new int[cant] {};
+
+	for(int i=1; i<cant; i++)
+	{
+		usuario = uArch.leer(i);
+		vResponsables[i] = tArch.cantidadTicketsPorUsuario(usuario);
+	}
+
+	int iMin = 1;
+	for(int i=iMin+1; i<cant; i++)
+	{
+		if(vResponsables[i] < vResponsables[iMin])
+		{
+			iMin = i;
+		}
+	}
+
+	int res = iMin;
+
+	delete[] vResponsables;
+
+	return res+1;
+}
+
 

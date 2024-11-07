@@ -81,8 +81,9 @@ void TicketManager::cargarTicket(Usuario usuario)
 
 	_ticket.setCliente(usuario.getId());
 
-	UsuarioArchivo usAr("responsables.dat");
-	_ticket.setResponsable(usAr.asignarResponsable());
+	//UsuarioArchivo usAr("responsables.dat");
+	UsuarioManager usMan;
+	_ticket.setResponsable(usMan.asignarResponsable());
 
 	_ticketArch.guardar(_ticket);
 
@@ -206,5 +207,6 @@ void TicketManager::cambiarEstado(Ticket ticket, string estado, int pos)
 	}
 
 }
+
 
 

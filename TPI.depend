@@ -109,7 +109,7 @@
 1730519248 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\fecha.h
 	<string>
 
-1730952410 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\main.cpp
+1731005453 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\main.cpp
 	<iostream>
 	"Usuario.h"
 	"UsuarioArchivo.h"
@@ -152,7 +152,7 @@
 1730255912 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\responsablearchivo.h
 	"Responsable.h"
 
-1730950295 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\ticketarchivo.cpp
+1730959507 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\ticketarchivo.cpp
 	"TicketArchivo.h"
 	<iostream>
 
@@ -165,28 +165,29 @@
 1729805766 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\idarchivo.cpp
 	"IdArchivo.h"
 
-1730765703 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\usuarioarchivo.h
+1731008364 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\usuarioarchivo.h
 	"Usuario.h"
+	"TicketArchivo.h"
 
-1730771477 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\usuarioarchivo.cpp
+1731006196 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\usuarioarchivo.cpp
 	"UsuarioArchivo.h"
 	<iostream>
-	<time.h>
 
-1730848128 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\usuariomanager.cpp
+1731008352 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\usuariomanager.cpp
 	"UsuarioManager.h"
 	<iostream>
 
-1730757747 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\usuariomanager.h
+1730957256 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\usuariomanager.h
 	"Usuario.h"
 	"UsuarioArchivo.h"
 
-1730951093 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\ticketmanager.cpp
+1730958384 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\ticketmanager.cpp
 	"TicketManager.h"
 	<iostream>
 
-1730937110 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\ticketmanager.h
+1731008299 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\ticketmanager.h
 	"Ticket.h"
 	"TicketArchivo.h"
 	"UsuarioArchivo.h"
+	"UsuarioManager.h"
 

@@ -1,6 +1,5 @@
 #include "UsuarioArchivo.h"
 #include <iostream>
-#include <time.h>
 using namespace std;
 
 UsuarioArchivo::UsuarioArchivo(string fileName)
@@ -58,17 +57,18 @@ bool UsuarioArchivo::guardar(const Usuario &registro)
 	return result;
 
 }
-Usuario UsuarioArchivo::leer(int id)
+Usuario UsuarioArchivo::leer(int pos)
 {
-
 	Usuario usuario;
+
 	FILE *pFile = fopen(_fileName.c_str(), "rb");
-	if (pFile == NULL)
+
+	if (pFile == nullptr)
 	{
 		return usuario;
 	}
+	fseek(pFile, pos * sizeof(Usuario), SEEK_SET);
 
-	fseek(pFile, id * sizeof(Usuario), SEEK_SET);
 	fread(&usuario, sizeof(Usuario), 1, pFile);
 	fclose(pFile);
 	return usuario;
@@ -146,15 +146,4 @@ bool UsuarioArchivo::validarPass(string passw, string fileName)
 
 }
 
-int UsuarioArchivo::asignarResponsable()
-{
 
-	int cant = getCantidad();
-
-	srand(time(0));
-
-	int i = rand()%cant +1;
-
-
-	return i;
-}

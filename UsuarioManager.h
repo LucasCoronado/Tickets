@@ -16,7 +16,7 @@ public:
     void leerPorId(std::string fileName);
 
 	int generarNuevoId(std::string fileName);
-
+    int asignarResponsable();
 
 
 private:

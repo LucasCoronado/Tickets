@@ -2,6 +2,7 @@
 #include "Ticket.h"
 #include "TicketArchivo.h"
 #include "UsuarioArchivo.h"
+#include "UsuarioManager.h"
 
 class TicketManager
 {
