@@ -92,6 +92,23 @@ int UsuarioArchivo::buscar(int id)
 }
 
 
+int UsuarioArchivo::buscarPorUser(string user)
+{
+	int i, cantidadRegistros = getCantidad();
+	Usuario usuario;
+
+	for(i=0; i<cantidadRegistros; i++)
+	{
+		usuario = leer(i);
+		if (usuario.getUser() == user)
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+
+
 bool UsuarioArchivo::validarUser(string user, string fileName)
 {
 	Usuario registro;

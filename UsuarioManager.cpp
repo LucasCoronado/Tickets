@@ -127,7 +127,7 @@ int UsuarioManager::asignarResponsable()
 	for(int i=1; i<cant; i++)
 	{
 		usuario = uArch.leer(i);
-		vResponsables[i] = tArch.cantidadTicketsPorUsuario(usuario);
+		vResponsables[i] = tArch.cantidadTicketsPorUsuario(usuario,"Pendiente");
 	}
 
 	int iMin = 1;

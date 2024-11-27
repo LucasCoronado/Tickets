@@ -104,7 +104,7 @@ bool TicketArchivo::modificarTicket(Ticket ticket, int pos)
 	return escribio;
 }
 
-int TicketArchivo::cantidadTicketsPorUsuario(Usuario usuario)
+int TicketArchivo::cantidadTicketsPorUsuario(Usuario usuario, string estado)
 {
 
 	int cant=0;
@@ -118,6 +118,7 @@ int TicketArchivo::cantidadTicketsPorUsuario(Usuario usuario)
 	}
 	while(fread(&ticket,sizeof(Ticket),1,pFile)==1)
 	{
+		if(ticket.getEstado() == estado){
 	 if(usuario.getPermiso() == "Cliente"){
 		if(ticket.getCliente() == usuario.getId()){
 			cant++;
@@ -127,6 +128,7 @@ int TicketArchivo::cantidadTicketsPorUsuario(Usuario usuario)
 			cant++;
 		}
 	 }
+		}
 	}
 	fclose(pFile);
 	return cant;

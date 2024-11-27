@@ -81,7 +81,6 @@ void TicketManager::cargarTicket(Usuario usuario)
 
 	_ticket.setCliente(usuario.getId());
 
-	//UsuarioArchivo usAr("responsables.dat");
 	UsuarioManager usMan;
 	_ticket.setResponsable(usMan.asignarResponsable());
 
@@ -156,40 +155,28 @@ void TicketManager::buscarPorIdUsuario(int idUser, string tipoUser)
 
 }
 
-void TicketManager::mostrarOrdenadosPorPrioridad(int idUser)
+void TicketManager::mostrarSegunPrioridad(int idUser, string prioridad,int e){
+
+string estado[4] = {"Pendiente","En progreso","En revision","Cerrado"};
+
+for(int i=0; i<_ticketArch.getCantidad(); i++)
+	{
+
+		_ticket = _ticketArch.leer(i);
+		if(_ticket.getPrioridad()==prioridad && (_ticket.getCliente() == idUser || _ticket.getResponsable() == idUser) && _ticket.getEstado() == estado[e-1])
+		{
+			mostrarTicket(_ticket);
+			cout<<endl;
+		}
+	}
+}
+
+void TicketManager::mostrarOrdenadosPorPrioridad(int idUser,int e)
 {
-
-	for(int i=0; i<_ticketArch.getCantidad(); i++)
-	{
-
-		_ticket = _ticketArch.leer(i);
-		if(_ticket.getPrioridad()=="ALTA" && _ticket.getCliente() == idUser)
-		{
-			mostrarTicket(_ticket);
-			cout<<endl;
-		}
-	}
-	for(int i=0; i<_ticketArch.getCantidad(); i++)
-	{
-
-		_ticket = _ticketArch.leer(i);
-		if(_ticket.getPrioridad()=="MEDIA" && _ticket.getCliente() == idUser)
-		{
-			mostrarTicket(_ticket);
-			cout<<endl;
-		}
-	}
-	for(int i=0; i<_ticketArch.getCantidad(); i++)
-	{
-
-		_ticket = _ticketArch.leer(i);
-		if(_ticket.getPrioridad()=="BAJA" && _ticket.getCliente() == idUser)
-		{
-			mostrarTicket(_ticket);
-			cout<<endl;
-		}
-	}
-
+	system("cls");
+	mostrarSegunPrioridad(idUser, "ALTA", e);
+	mostrarSegunPrioridad(idUser, "MEDIA",e);
+	mostrarSegunPrioridad(idUser, "BAJA",e);
 }
 
 void TicketManager::cambiarEstado(Ticket ticket, string estado, int pos)

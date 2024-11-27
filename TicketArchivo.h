@@ -13,7 +13,7 @@ public:
 
 	int buscar(int id);
 	bool modificarTicket(Ticket ticket, int pos);
-	int cantidadTicketsPorUsuario(Usuario usuario);
+	int cantidadTicketsPorUsuario(Usuario usuario, std::string estado);
 
 	private:
 	std::string _fileName;

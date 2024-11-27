@@ -14,6 +14,7 @@ public:
 	bool guardar(const Usuario &registro);
 	Usuario leer(int pos);
 	int buscar(int id);
+	int buscarPorUser(std::string user);
 
 	bool validarUser(std::string user, std::string fileName);
 	bool validarPass(std::string passw, std::string fileName);
