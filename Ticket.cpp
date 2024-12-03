@@ -142,27 +142,11 @@ void Ticket::setFechaLimite(Fecha fechaLimite)
 	_fechaLimite = fechaLimite;
 }
 
-/*int Ticket::setIdMasUno(string fileName)
-{
+int Ticket::diasRestantes(){
+	int dias;
+	Fecha f;
 
-	Ticket registro;
-	FILE *pFile;
+	dias = f.diasHasta(_fechaLimite);
 
-	pFile = fopen(fileName.c_str(),"rb");
-
-	if(pFile == nullptr)
-	{
-
-		return -1;
-	}
-
-	fseek(pFile,-sizeof(registro),SEEK_END);
-
-	fread(&registro,sizeof(registro),1,pFile);
-
-	int i = registro.getId() + 1;
-
-	return i;
-
-}  */
-
+	return dias;
+}

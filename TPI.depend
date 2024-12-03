@@ -103,17 +103,19 @@
 1730952963 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\usuario.h
 	<iostream>
 
-1730519229 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\fecha.cpp
+1733267345 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\fecha.cpp
 	"Fecha.h"
+	<ctime>
+	<iostream>
 
-1730519248 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\fecha.h
+1733266759 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\fecha.h
 	<string>
 
 1732676684 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\main.cpp
 	<iostream>
 	"Menu.h"
 
-1730950910 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\ticket.h
+1733261316 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\ticket.h
 	"Usuario.h"
 	"Fecha.h"
 
@@ -124,7 +126,7 @@
 1730502219 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\responsable.cpp
 	"Responsable.h"
 
-1730950968 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\ticket.cpp
+1733261296 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\ticket.cpp
 	"Ticket.h"
 	<iostream>
 	<cstring>
@@ -176,7 +178,7 @@
 	"Usuario.h"
 	"UsuarioArchivo.h"
 
-1732666016 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\ticketmanager.cpp
+1733266895 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\ticketmanager.cpp
 	"TicketManager.h"
 	<iostream>
 
@@ -186,7 +188,7 @@
 	"UsuarioArchivo.h"
 	"UsuarioManager.h"
 
-1732666681 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\menu.cpp
+1732678760 source:c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\menu.cpp
 	"Menu.h"
 
 1732676716 c:\users\coron\onedrive\documents\utn\2c- programacion ii\tp integrador\tickets\menu.h

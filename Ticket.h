@@ -30,6 +30,7 @@ public:
 	void setResponsable(int idResponsable);
 	void setFechaCreacion(Fecha fechaCreacion);
 	void setFechaLimite(Fecha fechaLimite);
+	int diasRestantes();
 
 private:
 

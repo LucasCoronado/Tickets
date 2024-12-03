@@ -17,7 +17,7 @@ void TicketManager::cargarTicket(Usuario usuario)
 {
 
 	string titulo,descripcion;
-	int prioridad,dia,mes,anio,limite;
+	int prioridad,limite;
 
 	cin.ignore();
 	cout<<"TITULO: ";
@@ -42,32 +42,7 @@ void TicketManager::cargarTicket(Usuario usuario)
 	}
 
 	Fecha fecha;
-	cout<<"FECHA"<<endl;
-	cout<<"DIA: ";
-	cin>>dia;
-	fecha.setDia(dia);
-	cout<<"MES: ";
-	cin>>mes;
-	fecha.setMes(mes);
-	cout<<"ANIO: ";
-	cin>>anio;
-	fecha.setAnio(anio);
-
-	while(fecha.verificarFecha(dia,mes,anio) == false)
-	{
-		cout<<"FECHA NO VALIDA"<<endl;
-		cout<<"--------------"<<endl;
-		cout<<"FECHA"<<endl;
-		cout<<"DIA: ";
-		cin>>dia;
-		fecha.setDia(dia);
-		cout<<"MES: ";
-		cin>>mes;
-		fecha.setMes(mes);
-		cout<<"ANIO: ";
-		cin>>anio;
-		fecha.setAnio(anio);
-	}
+	fecha.setFechaActual();
 
 	_ticket.setFechaCreacion(fecha);
 
@@ -103,6 +78,11 @@ void TicketManager::mostrarTicket(Ticket ticket)
 	cout<<"Responsable Asignado: "<<resp.leer(ticket.getResponsable()-1).getUser()<<endl;
 	cout<<"Fecha de Creacion: "<<ticket.getFechaCreacion().toString()<<endl;
 	cout<<"Fecha Limite: "<<ticket.getFechaLimite().toString()<<endl;
+
+	Fecha fecha;
+
+	cout<<"Falta: "<<fecha.diasHasta(ticket.getFechaLimite())<<" dias para la fecha limite."<<endl;
+	//cout<<"Falta: "<<ticket.diasRestantes()<<" dias para la fecha limite."<<endl;
 
 	if(ticket.getEstado()=="En revision" || ticket.getEstado()=="Cerrado"){
 		cout<<"Acciones tomadas: "<<ticket.getAcciones()<<endl;

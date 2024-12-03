@@ -18,6 +18,8 @@ public:
 	void agregarDias(int num);
 	std::string toString();
 	bool verificarFecha(int dia, int mes, int anio);
+	void setFechaActual();
+	int diasHasta(Fecha fechaLimite);
 
 private:
 

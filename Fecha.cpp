@@ -1,4 +1,5 @@
 #include "Fecha.h"
+#include <ctime>
 
 Fecha::Fecha(int dia, int mes, int anio)
 {
@@ -156,7 +157,8 @@ void Fecha::agregarDias(int num)
 
 }
 
-std::string Fecha::toString(){
+std::string Fecha::toString()
+{
 
 
 	std::string dia = std::to_string(_dia);
@@ -165,4 +167,43 @@ std::string Fecha::toString(){
 
 	std::string fechaF= dia+"/"+mes+"/"+anio;
 	return fechaF;
+}
+
+void Fecha::setFechaActual()
+{
+
+	time_t tiempoActual = time(nullptr);
+
+	tm* fechaLocal = localtime(&tiempoActual);
+
+	setDia(fechaLocal->tm_mday);
+	setMes(fechaLocal->tm_mon + 1);
+	setAnio(fechaLocal->tm_year + 1900);
+}
+
+int Fecha::diasHasta(Fecha fechaLimite)
+{
+	setFechaActual();
+
+	tm fechaActualTm = {};
+	fechaActualTm.tm_mday = _dia;
+	fechaActualTm.tm_mon = _mes - 1; // tm_mon está en rango [0, 11]
+	fechaActualTm.tm_year = _anio - 1900; // tm_year está en años desde 1900
+
+	// Configurar tm para la fecha límite
+	tm fechaLimiteTm = {};
+	fechaLimiteTm.tm_mday = fechaLimite.getDia();
+	fechaLimiteTm.tm_mon = fechaLimite.getMes() - 1;
+	fechaLimiteTm.tm_year = fechaLimite.getAnio() - 1900;
+
+	// Convertir a time_t
+	time_t tiempoActual = mktime(&fechaActualTm);
+	time_t tiempoLimite = mktime(&fechaLimiteTm);
+
+	// Calcular diferencia en segundos y convertir a días
+	double diferenciaSegundos = difftime(tiempoLimite, tiempoActual);
+	int diferenciaDias = static_cast<int>(diferenciaSegundos / (60 * 60 * 24));
+
+	return diferenciaDias;
+
 }

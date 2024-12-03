@@ -89,9 +89,6 @@ Usuario Menu::logIn(const string& fileName)
 
 void Menu::menuCliente(Usuario& usuarioActivo)
 {
-	/*TicketManager ticketMan;
-	TicketArchivo ticketAr;
-	Ticket ticket;*/
 	int opcion = -1;
 
 	while (opcion != 0)
@@ -247,159 +244,162 @@ void Menu::menuResponsable(Usuario& usuarioActivo)
 	}
 }
 
-void Menu::menuAdmin(Usuario& usuarioActivo) {
+void Menu::menuAdmin(Usuario& usuarioActivo)
+{
 
-    int opcion = -1;
+	int opcion = -1;
 
-    while(opcion!=0)
+	while(opcion!=0)
+	{
+		cout<<"1 - VER CLIENTES"<<endl;
+		cout<<"2 - VER RESPONSABLES"<<endl;
+		cout<<"3 - VER TICKETS POR CLIENTE"<<endl;
+		cout<<"4 - VER TICKETS POR RESPONSABLE"<<endl;
+		cout<<"5 - VER TICKETS ABIERTOS"<<endl;
+		cout<<"6 - VER TICKETS CERRADOS"<<endl;
+		cout<<"7 - CARGAR NUEVO USUARIO"<<endl;
+		cout<<"8 - BUSCAR USUARIO"<<endl;
+		cout<<"0 - CERRAR SESION"<<endl;
+		cout<<"9 - CERRAR PROGRAMA"<<endl;
+		cout << endl <<"INGRESE OPCION: ";
+		cin>>opcion;
+
+		switch(opcion)
+		{
+
+		case 1:
+		{
+			userMan.leerTodos("clientes.dat");
+			system("pause");
+			break;
+		}
+		case 2:
+		{
+			userMan.leerTodos("responsables.dat");
+			system("pause");
+			break;
+		}
+		case 3:
+		{
+			int idUser;
+			cout<<"ID USUARIO: ";
+			cin>>idUser;
+			ticketMan.buscarPorIdUsuario(idUser, "CLIENTE");
+			system("pause");
+			break;
+		}
+		case 4:
+		{
+			int idUser;
+			cout<<"ID USUARIO: ";
+			cin>>idUser;
+			ticketMan.buscarPorIdUsuario(idUser, "RESPONSABLE");
+			system("pause");
+			break;
+		}
+		case 5:
+		{
+			int e;
+			cout<<"1 - EN PROGRESO"<<endl;
+			cout<<"2 - EN REVISION"<<endl;
+			cout << endl <<"INGRESE OPCION: ";
+			cin>>e;
+
+			UsuarioArchivo userAr("clientes.dat");
+			for(int i=1; i<userAr.getCantidad(); i++)
 			{
-				cout<<"1 - VER CLIENTES"<<endl;
-				cout<<"2 - VER RESPONSABLES"<<endl;
-				cout<<"3 - VER TICKETS POR CLIENTE"<<endl;
-				cout<<"4 - VER TICKETS POR RESPONSABLE"<<endl;
-				cout<<"5 - VER TICKETS ABIERTOS"<<endl;
-				cout<<"6 - VER TICKETS CERRADOS"<<endl;
-				cout<<"7 - CARGAR NUEVO USUARIO"<<endl;
-				cout<<"8 - BUSCAR USUARIO"<<endl;
-				cout<<"0 - CERRAR SESION"<<endl;
-				cout<<"9 - CERRAR PROGRAMA"<<endl;
-				cout << endl <<"INGRESE OPCION: ";
-				cin>>opcion;
-
-				switch(opcion)
-				{
-
-				case 1:
-				{
-					userMan.leerTodos("clientes.dat");
-					system("pause");
-					break;
-				}
-				case 2:
-				{
-					userMan.leerTodos("responsables.dat");
-					system("pause");
-					break;
-				}
-				case 3:
-				{
-					int idUser;
-					cout<<"ID USUARIO: ";
-					cin>>idUser;
-					ticketMan.buscarPorIdUsuario(idUser, "CLIENTE");
-					system("pause");
-					break;
-				}
-				case 4:
-				{
-					int idUser;
-					cout<<"ID USUARIO: ";
-					cin>>idUser;
-					ticketMan.buscarPorIdUsuario(idUser, "RESPONSABLE");
-					system("pause");
-					break;
-				}
-				case 5:
-				{
-					int e;
-					cout<<"1 - EN PROGRESO"<<endl;
-					cout<<"2 - EN REVISION"<<endl;
-					cout << endl <<"INGRESE OPCION: ";
-					cin>>e;
-
-					UsuarioArchivo userAr("clientes.dat");
-					for(int i=1; i<userAr.getCantidad(); i++)
-					{
-						ticketMan.mostrarOrdenadosPorPrioridad(i,e+1);
-					system("pause");
-					}
-					system("pause");
-					break;
-				}
-				case 6:
-				{
-					UsuarioArchivo userAr("clientes.dat");
-					for(int i=1; i<userAr.getCantidad(); i++)
-					{
-						ticketMan.mostrarOrdenadosPorPrioridad(i,4);
-					}
-					system("pause");
-					break;
-				}
-				case 7:
-				{
-					int u;
-					cout<<"1 - CARGAR CLIENTE"<<endl;
-					cout<<"2 - CARGAR RESPONSABLE"<<endl;
-					cout << endl <<"INGRESE OPCION: ";
-					cin >>u;
-
-					if(u==1)
-					{
-						fileName = "clientes.dat";
-					}
-					else if(u == 2)
-					{
-						fileName = "responsables.dat";
-					}
-					cin.ignore();
-					userMan.cargarUsuario(fileName);
-					break;
-				}
-				case 8:
-				{
-					string username;
-					int u;
-					cout<<"1 - BUSCAR CLIENTE"<<endl;
-					cout<<"2 - BUSCAR RESPONSABLE"<<endl;
-					cout << endl <<"INGRESE OPCION: ";
-					cin >>u;
-
-					if(u==1)
-					{
-						fileName = "clientes.dat";
-					}
-					else if(u == 2)
-					{
-						fileName = "responsables.dat";
-					}
-					UsuarioArchivo userAr(fileName);
-					cout<<"1 - BUSCAR POR ID"<<endl;
-					cout<<"2 - BUSCAR POR NOMBRE DE USUARIO"<<endl;
-					cout << endl <<"INGRESE OPCION: ";
-					cin>>u;
-
-					if(u==1)
-					{
-						cout<<"INGRESAR ID: ";
-						cin>>u;
-					}else if(u==2){
-
-						cout<<"INGRESAR NOMBRE DE USUARIO: "<<endl;
-						cin>>username;
-						u = userAr.buscarPorUser(username) +1;
-					}
-
-					Usuario us = userAr.leer(u-1);
-					userMan.mostrarUsuario(us);
-
-					cout<<"TIENE "<<ticketAr.cantidadTicketsPorUsuario(us,"Pendiente")<<" TICKETS PENDIENTES DE APERTURA"<<endl;
-					cout<<"TIENE "<<ticketAr.cantidadTicketsPorUsuario(us,"En progreso")<<" TICKETS EN PROGRESO"<<endl;
-					cout<<"TIENE "<<ticketAr.cantidadTicketsPorUsuario(us,"En revision")<<" TICKETS ESPERANDO APROBACION"<<endl;
-					cout<<"TIENE "<<ticketAr.cantidadTicketsPorUsuario(us,"Cerrado")<<" TICKETS CERRADOS"<<endl;
-
-
-					system("pause");
-					break;
-				}
-				case 9:
-				{
-					exit(0);
-				}
-				}
-
-				system("cls");
+				ticketMan.mostrarOrdenadosPorPrioridad(i,e+1);
+				system("pause");
 			}
+			system("pause");
+			break;
+		}
+		case 6:
+		{
+			UsuarioArchivo userAr("clientes.dat");
+			for(int i=1; i<userAr.getCantidad(); i++)
+			{
+				ticketMan.mostrarOrdenadosPorPrioridad(i,4);
+			}
+			system("pause");
+			break;
+		}
+		case 7:
+		{
+			int u;
+			cout<<"1 - CARGAR CLIENTE"<<endl;
+			cout<<"2 - CARGAR RESPONSABLE"<<endl;
+			cout << endl <<"INGRESE OPCION: ";
+			cin >>u;
+
+			if(u==1)
+			{
+				fileName = "clientes.dat";
+			}
+			else if(u == 2)
+			{
+				fileName = "responsables.dat";
+			}
+			cin.ignore();
+			userMan.cargarUsuario(fileName);
+			break;
+		}
+		case 8:
+		{
+			string username;
+			int u;
+			cout<<"1 - BUSCAR CLIENTE"<<endl;
+			cout<<"2 - BUSCAR RESPONSABLE"<<endl;
+			cout << endl <<"INGRESE OPCION: ";
+			cin >>u;
+
+			if(u==1)
+			{
+				fileName = "clientes.dat";
+			}
+			else if(u == 2)
+			{
+				fileName = "responsables.dat";
+			}
+			UsuarioArchivo userAr(fileName);
+			cout<<"1 - BUSCAR POR ID"<<endl;
+			cout<<"2 - BUSCAR POR NOMBRE DE USUARIO"<<endl;
+			cout << endl <<"INGRESE OPCION: ";
+			cin>>u;
+
+			if(u==1)
+			{
+				cout<<"INGRESAR ID: ";
+				cin>>u;
+			}
+			else if(u==2)
+			{
+
+				cout<<"INGRESAR NOMBRE DE USUARIO: "<<endl;
+				cin>>username;
+				u = userAr.buscarPorUser(username) +1;
+			}
+
+			Usuario us = userAr.leer(u-1);
+			userMan.mostrarUsuario(us);
+
+			cout<<"TIENE "<<ticketAr.cantidadTicketsPorUsuario(us,"Pendiente")<<" TICKETS PENDIENTES DE APERTURA"<<endl;
+			cout<<"TIENE "<<ticketAr.cantidadTicketsPorUsuario(us,"En progreso")<<" TICKETS EN PROGRESO"<<endl;
+			cout<<"TIENE "<<ticketAr.cantidadTicketsPorUsuario(us,"En revision")<<" TICKETS ESPERANDO APROBACION"<<endl;
+			cout<<"TIENE "<<ticketAr.cantidadTicketsPorUsuario(us,"Cerrado")<<" TICKETS CERRADOS"<<endl;
+
+
+			system("pause");
+			break;
+		}
+		case 9:
+		{
+			exit(0);
+		}
+		}
+
+		system("cls");
+	}
 
 }
 
