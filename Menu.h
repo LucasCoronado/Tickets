@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Usuario.h"
 #include "UsuarioManager.h"
+#include "UsuarioArchivo.h"
 #include "Ticket.h"
 #include "TicketArchivo.h"
 #include "TicketManager.h"
@@ -22,5 +23,6 @@ private:
     TicketArchivo ticketAr;
     Ticket ticket;
     UsuarioManager userMan;
+    void validarInt(int &i, int opIn, int opFin);
     std::string fileName;
 };

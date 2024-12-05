@@ -19,7 +19,6 @@ void TicketManager::cargarTicket(Usuario usuario)
 	string titulo,descripcion;
 	int prioridad,limite;
 
-	cin.ignore();
 	cout<<"TITULO: ";
 	getline(cin, titulo);
 	_ticket.setTitulo(titulo);
@@ -60,7 +59,7 @@ void TicketManager::cargarTicket(Usuario usuario)
 	_ticket.setResponsable(usMan.asignarResponsable());
 
 	_ticketArch.guardar(_ticket);
-
+	cin.ignore();
 
 }
 
@@ -138,7 +137,6 @@ void TicketManager::buscarPorIdUsuario(int idUser, string tipoUser)
 void TicketManager::mostrarSegunPrioridad(int idUser, string prioridad,int e){
 
 string estado[4] = {"Pendiente","En progreso","En revision","Cerrado"};
-
 for(int i=0; i<_ticketArch.getCantidad(); i++)
 	{
 
@@ -147,6 +145,7 @@ for(int i=0; i<_ticketArch.getCantidad(); i++)
 		{
 			mostrarTicket(_ticket);
 			cout<<endl;
+			c++;
 		}
 	}
 }
